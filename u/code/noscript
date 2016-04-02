@@ -1,0 +1,73 @@
+    <noscript class="nojs">
+        <div>
+            <h2 style="padding-top: 20pt"><i class="fa fa-exclamation-circle">&nbsp;</i>Atención</h2>
+            <hr>
+            <table>
+                <tr>
+                    <td style="border-right: groove 1px gray; width: 70%; padding-right: 10pt; font-weight: bold; padding-left: 30pt;">
+                        <p style="text-align: center">Hemos detectado que navega con ejecución de scripts deshabilitado...</p>
+                        <br><br>
+                        Si está consciente de ello respetamos su elección, sin embargo no podrá seguir
+                        navegando en nuestro sitio pues hacemos uso de Javascript para algunas tareas importantes.
+                        <br><br>
+                        Si desconocía este hecho el problema puede corregirse actualizando el navegador
+                        o eliminando extensiones desconocidas y recargando esta página.
+                        <br><br>
+                        <p style="text-align: center">Si lo anterior no ayuda a solucionarlo ofrecemos algunas
+                        opciones de navegación a la derecha&nbsp; <i class="fa fa-arrow-right"></i></p>
+                    </td>
+                    <td style="text-align: left; padding: 0px;">
+                        <ul>
+                            <li style="font-weight: bold">Soportan javascript:&nbsp;<i class="fa fa-desktop"></i><i class="fa fa-mobile-phone">&nbsp;</i></li>
+                            <ul>
+                                <li><i class="fa fa-firefox">&nbsp;</i>Mozilla Firefox</li>
+                                <li><i class="fa fa-chrome">&nbsp;</i>Google Chrome</li>
+                                <li><i class="fa fa-opera">&nbsp;</i>Opera</li>
+                                <li><i class="fa fa-safari">&nbsp;</i>Safari</li>
+                            </ul>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <br><br>
+        </div>
+        <style>
+            .nojs {
+                width: 100%;
+                height: 100%;
+
+                background-color: floralwhite;
+                opacity: 0.9;
+
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: fixed;
+
+                z-index: 0;
+            }
+            .nojs div {
+
+            }
+            .nojs div table {
+                width: 100%;
+            }
+            .nojs div h2 {
+                text-align: center;
+                color: black;
+            }
+            .nojs div tr {
+                text-align: justify;
+            }
+            .nojs div table ul {
+                display: block;
+                list-style: none;
+            }
+            li i {
+                display: block;
+                padding-right: 2pt;
+            }
+        </style>
+    </noscript>
