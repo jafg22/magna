@@ -12,7 +12,7 @@
 	$method = $_SERVER['REQUEST_METHOD'];
 	$request = explode("/", substr(@$_SERVER['PATH_INFO'], 1));
 
-	if (!is_ajax()){
+	if (is_ajax()){
 
 		switch ($method) {
 			case 'GET':
