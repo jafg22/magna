@@ -14,7 +14,10 @@
         private $db;
 
         public $sqlQuery;
+        public $pdoQuery1;
+        public $pdoQuery2;
         private $conex;
+        private $cn;
         private $ResultSet;
 
         /**
@@ -158,6 +161,39 @@
              $resource->connect_error, ENT_QUOTES), E_USER_ERROR);
         }
 
+        }
+
+
+         /**
+         * @param $Conex PDO
+         * 
+         */
+        public function cnxPDO() {
+
+             $dbms = 'mysql';
+             $dsn = "$dbms:host=$this->dbInstance;dbname=$this->db";    
+             try {
+                    $this->cn=new PDO($dsn, $this->user, $this->psswd);
+                    return true;
+                } catch (PDOException $e) {
+                    echo 'Falló la conexión: ' . $e->getMessage();
+                    return false;
+                 }
+
+            
+
+        }
+
+        /**
+         * @param consulta en procedimiento almacenado
+         * 
+         */
+        public function spOut() {
+             
+        $this->q=$this->cn->exec($this->pdoQuery1);
+        $this->res=$this->cn->query($this->pdoQuery2)->fetchAll();
+        return $this->res;
+    
         }
 
         /**
