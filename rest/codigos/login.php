@@ -1,21 +1,22 @@
 <?php
 // php para el inicio de sesión de los usuarios.
-$conex->conectar()
-$conex->sqlQuery = sprintf("SELECT `usuario`,`nomU`,`apeU`,`isAdmin` 
+ 	$conex->conectar();
+    $conex->sqlQuery = sprintf("SELECT `usuario`,`nomU`,`apeU`,`isAdmin` 
 	FROM `usuarios` WHERE `contraU`= PASSWORD('%s') AND `usuario` = '%s'",$_GET['con'],$_GET['usu']);
 
-$rst = $conex->executeQuery();
+	$rst = $conex->executeQuery();
 
 	if ($rst->num_rows > 0) {	
-		$row = $rst->fetch_array(MYSQLI_ASSOC);
-		session_start();			
+		$row = $rst->fetch_array(MYSQLI_ASSOC);		
 			if (isset($_GET['per'])) {
 
-				$conex->sqlQuery = sprintf("SELECT `token` FROM `sessiontoken` WHERE `usuario` = '%s'",$row['usuario']);
-				$rst = $conex->executeQuery();
-            	$rowT = $rst->fetch_array(MYSQLI_ASSOC);
+				$conex->cnxPDO();
+  				$conex->pdoQuery1= "call sp_newToken('".$row['usuario']."',@variable)";
+  				$conex->pdoQuery2 = "select @variable";
 
-            	$data = array("usuario" => $row["usuario"], "nomU" => $row["nomU"], "apeU" => $row["apeU"], "isAdmin" => $row["isAdmin"], "token" => $rowT["token"]);
+			    $token = $conex->spOut();
+
+            	$data = array("usuario" => $row["usuario"], "nomU" => $row["nomU"], "apeU" => $row["apeU"], "isAdmin" => $row["isAdmin"], "token" => $token[0]['@variable']);
             	deliver_response(200, "OK", $data);
 
 			
@@ -34,3 +35,4 @@ $rst = $conex->executeQuery();
 
 
 ?>
+
