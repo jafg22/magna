@@ -1,10 +1,10 @@
 
---agregaincidencia
---solo se hace un call('usuario')
---agrega la incidencia y cuando llega a trs limpia y banea
+/*agregaincidencia
+solo se hace un call('usuario')
+agrega la incidencia y cuando llega a trs limpia y banea
 
---hay que resisarlo porque el estado es automatico a 2 pero se puede en un IN! opiniones?
-
+hay que revisarlo porque el estado es automatico a 2 pero se puede en un IN! opiniones?
+*/
 DROP PROCEDURE IF EXISTS sp_insIncidencia;
 CREATE PROCEDURE sp_insIncidencia
 (
@@ -22,7 +22,7 @@ set @incide = @incide + 1;
 
 End;
 
---creaestado
+/*creaestado*/
 
 DROP PROCEDURE IF EXISTS sp_insEstado;
 CREATE PROCEDURE sp_insEstado
@@ -41,14 +41,14 @@ End;
 
 
 
---creausuarios
+/*creausuarios*/
 
 DROP PROCEDURE IF EXISTS sp_insUsuario;
 CREATE PROCEDURE sp_insUsuario
 (
 IN usu VARCHAR(15),
 IN correo VARCHAR(50),
-IN conta VARCHAR(40),
+IN contra VARCHAR(80),
 IN nom VARCHAR(50),
 IN ape VARCHAR(255),
 IN admi boolean,
@@ -61,7 +61,7 @@ INSERT INTO usuarios VALUES (usu, correo, password(contra), nom, ape, admi, inci
 
 End;
 
---creaseccion
+/*creaseccion*/
 DROP PROCEDURE IF EXISTS sp_insSeccion;
 CREATE PROCEDURE sp_insSeccion
 (

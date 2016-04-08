@@ -1,3 +1,5 @@
+/* Insertar de antemano el estado con código 1 en tabla estados */
+
 call sp_insUsuario('ssalas','salas@email.com','123','solio','salas',0,0,1);
 call sp_insUsuario('sruiz','ruiz@email.com','123','sergio','ruiz',0,0,1);
 call sp_insUsuario('rsolis','solis@email.com','123','regio','solis',0,0,1);
