@@ -4,8 +4,6 @@
     $cnx = new mysqlConn("root", "magna", "localhost", "magna");
     if ($cnx->conectar()){ echo "Conectado a BD"; } else { echo "No conectado a BD"; }
     //BD CONEXION
-
-    $_SERVER['DOCUMENT_ROOT']."magna/u/code/wsserver/server.php "
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +11,8 @@
 <head>
     <meta charset="UTF-8" http-equiv="content-type">
 
-    <!-- ESTILOS CSS -->
+    <!-- ESTILOS CSS Y FAVICON-->
+    <link rel="icon" type="image/png" href="media/images/favicon/magna-icon.png"/>
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
     <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
     <link href="third-party/fontAwesome/font-awesome-4.4.0/css/font-awesome.css" type="text/css" rel="stylesheet">

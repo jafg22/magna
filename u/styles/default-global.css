@@ -1,3 +1,7 @@
+/*GLOBALS*/
+
+/*GLOBALS*/
+
 /* CHAT */
 .chat_wrapper {
     width: 500px;
@@ -22,3 +26,30 @@
 .user_name{font-weight:bold;}
 .user_message{color: #88B6E0;}
 /* CHAT */
+
+/*LOGIN*/
+#loginTitle{
+    text-align: center;
+    margin-top: 30pt;
+    margin-bottom: 30pt;
+}
+
+label{
+    text-align: left;
+}
+
+#btnEnter, #btnRegis{
+    width: 150px;
+}
+
+#auxh4{ /*NO TIENE CUENTA?*/
+    text-align: center;
+    margin-top: 17pt;
+    margin-bottom: 17pt;
+}
+
+footer{
+    position: absolute;
+    top: 92%;
+}
+/*LOGIN*/
