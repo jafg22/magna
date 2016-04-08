@@ -23,7 +23,7 @@
          * @param string $dbInstance <b>Database Instance</b>
          * @param string $db <b>Database Database</b>
          */
-        public function __construct($user = "root", $psswd = "", $dbInstance = "localhost", $db = "notex"){
+        public function __construct($user = "", $psswd = "", $dbInstance = "", $db = ""){
             $this->dbInstance = $dbInstance;
             $this->user = $user;
             $this->psswd = $psswd;

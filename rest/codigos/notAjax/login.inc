@@ -1,10 +1,13 @@
-<?php
-// php para el inicio de sesión de los usuarios.
-$conex->conectar()
-$conex->sqlQuery = sprintf("SELECT `usuario`,`nomU`,`apeU`,`isAdmin` 
+<?php 
+	
+	$data = file_get_contents("php://input");
+    $valores = json_decode($data,TRUE);
+
+    $conex->conectar();
+    $conex->sqlQuery = sprintf("SELECT `usuario`,`nomU`,`apeU`,`isAdmin` 
 	FROM `usuarios` WHERE `contraU`= PASSWORD('%s') AND `usuario` = '%s'",$_GET['con'],$_GET['usu']);
 
-$rst = $conex->executeQuery();
+	$rst = $conex->executeQuery();
 
 	if ($rst->num_rows > 0) {	
 		$row = $rst->fetch_array(MYSQLI_ASSOC);
@@ -30,6 +33,11 @@ $rst = $conex->executeQuery();
 
 			deliver_response(400, "Error", array("Datos Erroneos"));
 	}
+
+
+
+?>
+
 
 
 

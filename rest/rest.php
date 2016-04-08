@@ -3,8 +3,7 @@
 	include_once('clsConexion.inc');
 	include_once('codigos/isAjax.php');
 
-	$conex = new mysqlConn;
-	$conex->conectar();
+	$conex = new mysqlConn("root", "magna", "localhost", "magna");    
 
 	header("Content-Type:application/json");
 	header("Accept:application/json");
@@ -16,7 +15,11 @@
 
 		switch ($method) {
 			case 'GET':
-			
+			 	if (sizeof($request == 1)){
+					if ($request[0] == 'login'){//Solicitud de login
+                    	include_once("codigos/login.php");
+                	}
+				}					
 				break;
 			
 			case 'POST':
@@ -38,6 +41,12 @@
 
 		switch ($method) {
 			case 'GET':
+
+			if (sizeof($request == 1)){
+					if ($request[0] == 'login'){//Solicitud de login
+                    	include_once("codigos/notAjax/login.inc");
+                	}
+				}
 			
 				break;
 			
