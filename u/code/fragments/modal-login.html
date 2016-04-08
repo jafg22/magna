@@ -1,0 +1,59 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="form-horizontal" id="modalForm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="tituModal">Registrarme</h4>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- modal body begin -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div>
+                                <h1 class="h3" style="text-align: center;" id="modalInfo">Formulario de registro</h1>
+                                <br>
+                                <div class="form-group" id="modalEmailgroup">
+                                    <label for="txtEmail" class="col-sm-4 control-label">Correo electrónico:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="email" class="form-control" maxlength="50" id="txtEmail" name="txtEmail" placeholder="Su e-mail">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtNom" class="col-sm-4 control-label">Nombre:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="text" class="form-control" id="txtNom" name="txtNom" maxlength="35" placeholder="El nombre que desees">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtPasswd" class="col-sm-4 control-label">Contraseña:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="password" class="form-control" id="txtPasswd" name="txtPasswd" maxlength="60" placeholder="¡Cuidado! Este valor no cambiará">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtPasswd2" class="col-sm-4 control-label">Repetir Contraseña:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="password" class="form-control" id="txtPasswd2" name="txtPasswd2" maxlength="60" placeholder="No lo olvides">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eula" class="col-sm-4 control-label">Acepto <a target="_blank" href="license/eula.php">EULA</a></label>
+                                    <div class="col-sm-1">
+                                        <input required checked type="checkbox" class="form-control" id="eula" name="eula">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal body end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" id="modalSubmit">Registrar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
