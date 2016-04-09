@@ -1,4 +1,4 @@
---cuando la incidencia llega a 3 agrega un baneo de 3 dias
+/*cuando la incidencia llega a 3 agrega un baneo de 3 dias*/
 DROP TRIGGER IF EXISTS banea_usuario;
 CREATE TRIGGER banea_usuario 
 BEFORE UPDATE ON usuarios

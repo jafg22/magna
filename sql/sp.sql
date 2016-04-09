@@ -76,3 +76,54 @@ BEGIN
 INSERT INTO seccionesn VALUES (idS, nomS, descS, colS, estadoS);
 
 End;
+
+
+
+/*crea token*/
+/*se ejecuta asi: call('usuario',@variable); select @variable*/
+DROP PROCEDURE IF EXISTS sp_newToken;
+CREATE PROCEDURE sp_newToken(
+usuario  varchar(15),
+OUT pret varchar(100)
+)
+BEGIN
+
+set @token = PASSWORD(DATE_FORMAT(NOW(6),'%Y-%M-%D %h:%i:%s:%f')); 
+set @caduca = DATE_ADD(NOW(), INTERVAL 7 DAY);
+SET pret = @token;
+insert into sessiontoken value(usuario,@token,@caduca);
+
+END;
+
+
+
+/*para login
+1 = usuario no existe
+2 = mala contra
+3 = banneado
+4 = login correcto
+*/
+
+DROP PROCEDURE IF EXISTS sp_login;
+CREATE PROCEDURE sp_login(
+usua  varchar(15),
+contra  varchar(50),
+OUT login int(4)
+)
+BEGIN
+SET @contra = PASSWORD(contra); 
+SELECT CAST((SELECT contraU FROM usuarios WHERE usuario = usua) AS UNSIGNED ) INTO @contraIn;
+SELECT CAST((SELECT COUNT(contraU) FROM usuarios WHERE usuario = usua) AS UNSIGNED ) INTO @exis;
+SELECT CAST((SELECT estadoU FROM usuarios WHERE usuario = usua) AS UNSIGNED ) INTO @estado;
+
+
+IF @exist = 0 THEN
+ SET login = 1;
+ELSEIF @contra != @contraIn THEN 
+ SET login = 2; 
+ELSEIF @estado = 2 THEN 
+SET login = 3;
+ELSE 
+SET login = 4;
+END IF;
+END;
