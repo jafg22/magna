@@ -1,3 +1,5 @@
 # Archivos y directorios de PhpStorm
+.idea
+rest/.idea
 u/.idea
 *.xml
