@@ -23,6 +23,12 @@
 				break;
 			
 			case 'POST':
+				if (sizeof($request == 1)){
+					if ($request[0] == 'signup'){//Solicitud de login
+                    	include_once("codigos/signup.php");
+                	}
+
+				}
 			
 				break;
 			
@@ -42,7 +48,7 @@
 		switch ($method) {
 			case 'GET':
 
-			if (sizeof($request == 1)){
+			if (sizeof($request == 0)){
 					if ($request[0] == 'login'){//Solicitud de login
                     	include_once("codigos/notAjax/login.inc");
                 	}
@@ -51,6 +57,13 @@
 				break;
 			
 			case 'POST':
+
+			if (sizeof($request == 1)){
+					if ($request[0] == 'signup'){//Solicitud de login
+                    	include_once("codigos/signup.php");
+                	}
+
+				}
 			
 				break;
 			
