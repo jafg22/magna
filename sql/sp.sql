@@ -3,7 +3,7 @@
 solo se hace un call('usuario')
 agrega la incidencia y cuando llega a trs limpia y banea
 
-hay que revisarlo porque el estado es automatico a 2 pero se puede en un IN! opiniones?
+ automatico a 2 pero se puede en un IN! ?
 */
 DROP PROCEDURE IF EXISTS sp_insIncidencia;
 CREATE PROCEDURE sp_insIncidencia
@@ -128,5 +128,28 @@ SET login = 3;
 ELSE 
 SET login = 4;
 SELECT concat(usuario,';', nomU,' ',apeU,';',isAdmin,';') INTO info from usuarios where usuario = usua;
+END IF;
+END;
+
+
+/*sp de validar si el token ya caduco*/
+
+DROP PROCEDURE IF EXISTS sp_validaToken;
+CREATE PROCEDURE sp_validaToken(
+tok  varchar(25),
+
+OUT info boolean
+)
+BEGIN
+select caducidad into @caduca from sessionToken where token = tok;
+SELECT CAST((SELECT COUNT(usuario) FROM sessionToken WHERE token = tok) AS UNSIGNED ) INTO @exis;
+select date(now()) into @actual;
+
+IF @exis = 0 THEN
+SET info = 1;
+ELSEIF @caduca >= @actual THEN
+SET info = 1;
+ELSE
+SET info = 0;
 END IF;
 END;
