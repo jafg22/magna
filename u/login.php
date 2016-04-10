@@ -7,12 +7,12 @@
     <!-- ESTILOS CSS Y FAVICON -->
     <link rel="icon" type="image/png" href="media/images/favicon/magna-icon.png"/>
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
-    <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
-    <link href="third-party/fontAwesome/font-awesome-4.4.0/css/font-awesome.css" type="text/css" rel="stylesheet">
+    <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
-    <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
     <script src="scripts/default-login.js"></script>
     <title>Magna Radio | Login</title>
 </head>

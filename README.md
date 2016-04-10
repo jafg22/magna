@@ -21,7 +21,7 @@
 - Jorge Ruíz Fernández (York)
 
 ####**Estudiantes**
-- José Ángel Flores Garćia @jafg22  
+- José Ángel Flores García @jafg22  
 - Emilio José González Miranda @egonzalezm24
 - Deiby Damian Morera Salar @dmorera
 

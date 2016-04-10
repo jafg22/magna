@@ -4,26 +4,34 @@
 
 /* CHAT */
 .chat_wrapper {
-    width: 500px;
-    margin-right: auto;
-    margin-left: auto;
+    position: fixed;
+    top: 100%;
+    margin-top: -225px;
+
+    width: 220px;
     background: #CCCCCC;
     border: 1px solid #999999;
-    padding: 10px;
+    padding: 1px;
     font: 12px 'lucida grande',tahoma,verdana,arial,sans-serif;
 }
 .chat_wrapper .message_box {
     background: #FFFFFF;
-    height: 150px;
+    height: 180px;
     overflow: auto;
-    padding: 10px;
+    padding-left: 3px;
+    padding-top: 3px;
     border: 1px solid #999999;
 }
 .chat_wrapper .panel input{
-    padding: 2px 2px 2px 5px;
+    padding: 2px 2px 2px 2px;
+    width: 100%;
 }
-.system_msg{color: #BDBDBD;font-style: italic;}
-.user_name{font-weight:bold;}
+.chat_controls{
+    text-align: right;
+    padding: 3px;
+}
+.system_msg{color: #BDBDBD;font-style: italic; font-family: monospace;}
+.user_name{font-weight:bold; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 .user_message{color: #88B6E0;}
 /* CHAT */
 
@@ -39,7 +47,7 @@ label{
 }
 
 #btnEnter, #btnRegis{
-    width: 150px;
+
 }
 
 #auxh4{ /*NO TIENE CUENTA?*/
