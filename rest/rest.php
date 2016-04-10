@@ -18,6 +18,8 @@
 			 	if (sizeof($request == 1)){
 					if ($request[0] == 'login'){//Solicitud de login
                     	include_once("codigos/login.php");
+                	}else if($request[0] == 'restore'){
+                		include_once("codigos/restoreSession.php");
                 	}
 				}					
 				break;

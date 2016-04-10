@@ -136,7 +136,7 @@ END;
 
 DROP PROCEDURE IF EXISTS sp_validaToken;
 CREATE PROCEDURE sp_validaToken(
-tok  varchar(25),
+tok  varchar(100),
 
 OUT info boolean
 )
