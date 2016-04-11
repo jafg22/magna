@@ -1,16 +1,28 @@
  <?php
  include_once('clsConexion.inc');
-     $conex = new mysqlConn("root", "magna", "localhost", "magna");
+    
+
+
+    /* $conex = new mysqlConn("root", "magna", "localhost", "magna");
      $conex->cnxPDO();
-     $conex->pdoQuery1 = "call sp_validaToken('*E41A3DD57E3EBB6B81AB8EE4212959421D316EF1',@var)";
-     $conex->pdoQuery2 = "SELECT @var";
+      $conex->pdoQuery1 = "call sp_validaToken('*DC2D55E81A17467C84718EE6435203381187EE1F',@est,@info)";
+     $conex->pdoQuery2 = "SELECT @est,@info";
 
      $resul = $conex->spOut();
 
-     if($resul[0]['@var'] == 0){
+     if($resul[0]['@est'] == 0){
         echo "token caduco";
-     }else{
-        echo "token vivo";
+     }else{        
+
+      list($user,$correo,$nomC,$isAdmin) = explode(";", $resul[0]['@info']);
+      session_start();
+      $_SESSION['auten']="Si";
+      $_SESSION['user'] = $user;
+      $_SESSION['correo'] = $correo;
+      $_SESSION['NomC'] = $nomC;
+      $_SESSION['isAdm'] = $isAdmin;
+
+
      }
    
 /*
