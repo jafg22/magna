@@ -19,6 +19,8 @@
      	case '4':
      		
      			list($user,$nomC,$isAdmin) = explode(";", $resul[0]['@var2']);
+                session_start();
+
 
      			if (isset($_GET['per'])) {
      		
@@ -27,10 +29,20 @@
 
 					$token = $conex->spOut();
 
+                    $_SESSION['user'] = $user;
+                    $_SESSION['NomC'] = $nomC;
+                    $_SESSION['isAdm'] = $isAdmin;
+                    $_SESSION['tok'] = $token[0]['@variable'];
+
+
     	       		$data = array("usuario" => $user, "NomC" => $nomC, "isAdmin" => $isAdmin, "token" => $token[0]['@variable']);
         	    	deliver_response(200, "OK", $data);
 
             	}else{
+
+                    $_SESSION['user'] = $user;
+                    $_SESSION['NomC'] = $nomC;
+                    $_SESSION['isAdm'] = $isAdmin;
 
             		$data = array("usuario" => $user, "NomC" => $nomC, "isAdmin" => $isAdmin);
             		deliver_response(200, "OK", $data);
