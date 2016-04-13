@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/default.js"></script>
     <title></title>
 </head>
 <body>
