@@ -2,6 +2,21 @@
 
 /*GLOBALS*/
 
+/*INDEX*/
+#header{
+    font-family: bitterbold;
+    font-weight: bold;
+}
+
+#header h1{
+    font-size: 36px;
+}
+
+#nav{
+    color: whitesmoke;
+}
+/*INDEX*/
+
 /* CHAT */
 .chat_wrapper {
     position: fixed;

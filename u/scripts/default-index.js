@@ -1,10 +1,16 @@
 //GLOBALES
 var wsUri = "ws://localhost:1024/magna/u/code/wsserver/server.php";
 
+//DOM
+var chat = $("#chatF");
+
 $(document).ready(function(){
-    if ($(window).width() >= 992){ws();}//Implementa acciones websocket
+
 });
 
+chat.ready(function(){
+    if ($(window).width() >= 992){ws();}//Implementa acciones websocket
+});
 
 // FUNCIONES WEBSOCKETS INICIO
     function ws(){

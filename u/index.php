@@ -16,6 +16,7 @@
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
     <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="styles/fuentes/bitter/stylesheet.css">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
@@ -27,14 +28,14 @@
     <header class="container"><!--SEMANTICO::HEADER-->
         <div class="row">
             <div id="header" class="col-xs-12"><!--HEADER VISIBLE-->
-
+                <h1 class="h1">Magna</h1>
             </div>
         </div>
     </header>
     <main class="container-fluid"><!--PARTE PRINCIPAL DE PAGINA-->
         <section class="row">
             <div id="menuSecciones" class="col-xs-12"><!--SECCIONES RADIO-->
-
+                <?php include_once("code/fragments/navbar.html"); ?>
             </div>
         </section>
 
@@ -47,7 +48,7 @@
 
                 <!-- CHAT -->
                 <aside class="col-xs-12">
-                    <div class="chat_wrapper">
+                    <div class="chat_wrapper" id="chatF">
                         <i class="fa fa-minus fa-1x chat_controls" data-toggle="tooltip" data-placement="left" title="Minimizar"></i>
                         <i class="fa fa-close fa-1x chat_controls" data-toggle="tooltip" data-placement="left" title="Cerrar"></i>
                         <div class="message_box" id="message_box"></div>
