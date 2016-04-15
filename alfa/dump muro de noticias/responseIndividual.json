@@ -1,0 +1,18 @@
+//Prevista de noticias de una seccion diferente de home
+
+{"data":[
+  {"nomSeccion":[
+    {"id":"id",//Primera noticia
+      "titulo":"titulo",
+      "fecha":"fecha",
+      "autor":"autor",
+      "cuerpo":"substring(cuerpo, 70)",
+      "imagen":"blob || false",
+      "adjuntos":[
+        {"id":"id", "nombre":"nombre", "mime":"mime"},
+        {"id":"id", "nombre":"nombre", "mime":"mime"}
+      ]},
+    {} //Segunda noticia
+  ]}
+],
+"pagina":"0, 1, n"}

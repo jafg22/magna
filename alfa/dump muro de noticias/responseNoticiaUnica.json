@@ -1,0 +1,22 @@
+//Noticia desplegada por completo en navegador
+
+{"data":{
+  "id":"id",
+  "titulo":"titulo",
+  "fecha":"fecha",
+  "autor":"autor",
+  "cuerpo":"cuerpo",
+  "imagen":"true || false",
+  "adjuntos":[
+    { "id":"id",
+      "nombre":"nombre", //Primer adjunto
+      "mime":"mime"
+    },
+    {"nombre":"", "mime":""} //Segundo adjunto
+  ]
+}}
+
+/*El blob se descarga solo cuando se solicita un disparo de descarga*/
+
+/*Al dar click en el <a></a> que contiene los datos de nombre y mime
+se envia un get para obtener el blob segun el id de la noticia*/

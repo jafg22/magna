@@ -1,0 +1,24 @@
+//Prevista de noticias en home
+
+{"data":[/*Puntero conteniendo todo*/
+  {"nomSeccion":[/*Ej: Cultura*/
+    {/*Primera noticia de Cultura*/
+      "id":"id",
+      "titulo":"titulo",
+      "fecha":"fecha",
+      "autor":"autor",
+      "cuerpo":"substring(cuerpo, 70)",
+      "imagen":"true || false",
+      "adjuntos":"true || false"
+    },
+    {} /*Segunda noticia de Cultura*/
+  ]},
+  {"nomSeccion":[]} /*Ej: Acerca de*/
+]}
+
+/*Si el campo noticia vuelve en true se envia un segundo
+ajax para descargar la imagen en el DOM y agilizar la descarga de texto*/
+
+/*Si el campo adjunto vuelve true se pone un icono en la noticia
+No es necesario poner el adjunto desde previstas en home*/
+
