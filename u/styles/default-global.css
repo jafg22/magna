@@ -15,6 +15,20 @@
 #nav{
     color: whitesmoke;
 }
+
+#navBar ul{
+    width: 100%;
+    text-align: center;
+}
+
+#navBar ul li{
+    transition: all 400ms;
+    cursor: pointer;
+}
+
+#navBar ul li:hover{
+    background-color: ghostwhite;
+}
 /*INDEX*/
 
 /* CHAT */

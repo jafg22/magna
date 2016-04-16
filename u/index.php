@@ -21,7 +21,6 @@
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script src="scripts/default-index.js"></script>
     <title></title>
 </head>
 <body>
@@ -47,18 +46,11 @@
                 <!--PLAYER SC-->
 
                 <!-- CHAT -->
-                <aside class="col-xs-12">
-                    <div class="chat_wrapper" id="chatF">
-                        <i class="fa fa-minus fa-1x chat_controls" data-toggle="tooltip" data-placement="left" title="Minimizar"></i>
-                        <i class="fa fa-close fa-1x chat_controls" data-toggle="tooltip" data-placement="left" title="Cerrar"></i>
-                        <div class="message_box" id="message_box"></div>
-                        <div class="panel">
-                            <input type="text" name="message" id="message" placeholder="Mensaje" maxlength="500"/>
-                        </div>
-                </aside>
+                <?php include_once("code/fragments/chat.html"); ?>
             </aside>
         </section>
     </main>
     <footer></footer>
+    <script src="scripts/default-index.js"></script>
 </body>
 </html>
