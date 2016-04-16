@@ -9,17 +9,18 @@ var cultura = $("#navCultura");
 var nosotros = $("#navNosotros");
 
 $(document).ready(function(){
+    SCinit();
     descargaCuerpo();
 });
 
 //FUNCIONES DUMP DATA
 function descargaCuerpo(){
     var path = window.location.search.split("/");
-    alert(path + " " + path.length);
+    //alert(path + " " + path.length);
     switch (path.length){
         case 1:
             if (path[0] === ""){
-                alert("Soy home!!!");
+                //alert("Soy home!!!");
             }
             break;
         case 2:
@@ -32,7 +33,8 @@ function descargaCuerpo(){
                         alert("Quiero home");
                         break;
                     case "diferido":
-                        alert("Quiero diferido");
+                        //alert("Quiero diferido");
+
                         break;
                     case "cultura":
                         alert("Quiero cultura");
@@ -52,23 +54,34 @@ function descargaCuerpo(){
 
 //ACCIONES NAVBAR
     home.on("click", function(){
-        window.history.pushState("Magna", "Magna || Home", "index.php");
+        window.history.pushState({"pageTitle":"Magna | Home"}, "Magna | Home", "index.php");
+        document.title = "Magna | Home";
         descargaCuerpo();
     });
     diferido.on("click", function(){
-        window.history.pushState("Magna", "Magna || Home", "index.php?/section/diferido");
+        window.history.pushState({"pageTitle":"Magna | Diferido"}, "Magna | Home", "index.php?/section/diferido");
+        document.title = "Magna | Diferido";
         descargaCuerpo();
     });
     cultura.on("click", function(){
-        window.history.pushState("Magna", "Magna || Home", "index.php?/section/cultura");
+        window.history.pushState({"pageTitle":"Magna | Cultura"}, "Magna | Home", "index.php?/section/cultura");
+        document.title = "Magna | Cultura";
         descargaCuerpo();
     });
     nosotros.on("click", function(){
-        window.history.pushState("Magna", "Magna || Home", "index.php?/section/nosotros");
+        window.history.pushState({"pageTitle":"Magna | Acerca de"}, "Magna | Home", "index.php?/section/nosotros");
+        document.title = "Magna | Acerca de";
         descargaCuerpo();
     });
 //ACCIONES NAVBAR
 
+//SOUNDCLOUD
+function SCinit(){
+    SC.initialize({
+        client_id: 'a23f4aab06d0713719783b97bfe94794'
+    });
+}
+//SOUNDCLOUD
 chat.ready(function(){//FUNCION CHAT
     if ($(window).width() >= 992){ws();}//Implementa acciones websocket
 });//FUNCION CHAT
