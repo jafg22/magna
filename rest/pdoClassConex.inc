@@ -4,7 +4,7 @@
 /**
  * PDO clase conexion hecha por jafg22 Jose Flores
  */
-class pdoConexion
+class pdoConexion extends PDO 
 {
     private $host;
     private $typeDb;
@@ -31,8 +31,8 @@ class pdoConexion
 
     public function __construct($host = "",$typeDb = "", $user = "", $pass = "", $database = "")
     {
-    	 	$this->host = $host;
-    	 	$this->typeDb = $typeDb;
+            $this->host = $host;
+            $this->typeDb = $typeDb;
             $this->user = $user;
             $this->psswd = $pass;
             $this->db = $database;        
@@ -109,30 +109,87 @@ class pdoConexion
 
         public function conectar()
         {
-        	
-			try{
-				$this->conex = new PDO($this->typeDb.':host='.$this->host.';dbname='.$this->db, $this->user, $this->psswd);
-				$this->conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				return true;
-			}catch(PDOException $e){
-				echo "ERROR: " . $e->getMessage();				
-				return false;
-				}
+            
+            try{
+                $this->conex = new PDO($this->typeDb.':host='.$this->host.';dbname='.$this->db, $this->user, $this->psswd);
+                $this->conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                return true;
+            }catch(PDOException $e){
+                echo "ERROR: " . $e->getMessage();              
+                return false;
+                }
 
         }
 
-        public function execute()
+         /**
+          * 
+          *
+         * Funcion que realiza INSERT,UPDATE, DELETE
+         * @return                    
+         */
+
+         public function execute()
         {
-        	$this->sentencia = $this->conex->prepare($this->$Sqlquery);
-        	$this->rows = $this->sentencia->execute($this->bindParams);
+            try{
+            $this->sentencia = $this->conex->prepare($this->cleanQuery($this->Sqlquery));
+            $this->rows = $this->sentencia->execute($this->bindParams);
 
-        	if ($this->rows == 1) {
-        		return true;
-			} catch(PDOException $e) {
-  				echo 'Error: ' . $e->getMessage();
-  				return false;
-			}
+            if ($this->rows == 1) {
+                return true;
+            }
+            
+        }catch(PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+                return false;
+            }
         }
+
+        /**
+         * Funcion de SELECT
+         * @return 
+         * 
+         *
+         */
+
+         public function ExecuteSelect()
+        {
+            try{
+                 $this->sentencia = $this->conex->prepare($this->cleanQuery($this->Sqlquery));
+                 $this->sentencia->execute();
+                 return $this->sentencia->fetchAll(PDO::FETCH_ASSOC);                                                                                                                  
+        }catch(PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+                return false;
+            }
+        }
+
+
+        /**
+         * @param consulta en procedimiento almacenado
+         * 
+         */
+        public function spOut() {
+             
+        $this->q=$this->conex->exec($this->pdoQuery1);
+        $this->res=$this->conex->query($this->pdoQuery2)->fetchAll();
+        return $this->res;
+    
+        }
+
+
+
+        /**
+         *Clean query realizado por Emilio Gonzalez Miranda
+         * @param 
+         * @return
+         */
+        private function cleanQuery($query){
+            $query = strip_tags($query);
+            $query = stripslashes($query);
+            $query = stripcslashes($query);
+            return $query;
+        }
+
 }
 
 
