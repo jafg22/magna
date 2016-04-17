@@ -6,6 +6,7 @@ var chat = $("#chatF");
 var noticias = $("#noticias");
 var lateral = $("#side");
 var estado = $("#status");
+var playerMagna = $("#playerMagna");
 
 var home = $("#navHome");
 var diferido = $("#navDiferido");
@@ -14,10 +15,10 @@ var nosotros = $("#navNosotros");
 
 $(document).ready(function(){
     descargaCuerpo();
+    buscaStr();
 });
 
-//FUNCIONES DUMP DATA
-function descargaCuerpo(){
+function descargaCuerpo(){//FUNCIONES DUMP DATA
     noticias.html("");
     estado.html("<i class='fa fa-circle-thin faa-flash animated'>&nbsp;</i><small>Cargando...</small>");
     estado.slideDown(500);
@@ -56,11 +57,9 @@ function descargaCuerpo(){
 
             break;
     }
-}
-//FUNCIONES DUMP DATA
+}//FUNCIONES DUMP DATA
 
-//ACCIONES NAVBAR
-    home.on("click", function(){
+    home.on("click", function(){//ACCIONES NAVBAR
         window.history.pushState({"pageTitle":"Magna | Home"}, "Magna | Home", "index.php");
         document.title = "Magna | Home";
         descargaCuerpo();
@@ -79,11 +78,9 @@ function descargaCuerpo(){
         window.history.pushState({"pageTitle":"Magna | Acerca de"}, "Magna | Home", "index.php?/section/nosotros");
         document.title = "Magna | Acerca de";
         descargaCuerpo();
-    });
-//ACCIONES NAVBAR
+    });//ACCIONES NAVBAR
 
-//SOUNDCLOUD
-function SCinit(){
+function SCinit(){//SOUNDCLOUD
     SC.initialize({
         client_id: 'a23f4aab06d0713719783b97bfe94794'
     });
@@ -112,17 +109,10 @@ function SCinit(){
                     }
                 }
             });
-            //jQuery ajax function End
-            //END AJAX
         });
-        /*SC.oEmbed('http://soundcloud.com/user-22267088/rec-prueba-1604161754', {
-            element: document.getElementById('noticia')
-        }).then(function(embed){
-            alert('oEmbed response: ', embed);
-        });*/
     });
-}
-//SOUNDCLOUD
+}//SOUNDCLOUD
+
 chat.ready(function(){//FUNCION CHAT
     if ($(window).width() >= 992){ws();}//Implementa acciones websocket
 });//FUNCION CHAT
@@ -178,5 +168,42 @@ function ws(){
 
     websocket.onerror	= function(ev){$('#message_box').append("<div class='system_error'>Ha ocurrido un error.</div>");};
     websocket.onclose 	= function(ev){$('#message_box').append("<div class='system_msg'>Conexión cerrada</div>");};
-}
-//FUNCIONES WEBSOCKETS FIN
+}//FUNCIONES WEBSOCKETS FIN
+
+//INICIO BUSCA STREAM
+    function buscaStr(){
+        $.get("http://localhost:8000/", function(data, status){
+            data = new XMLSerializer().serializeToString(data);
+            if (data.includes('/magna')){
+                //alert("magna mounted");
+                    playerMagna.html('<div class="player-container"> ' +
+                        '<div class="player-wrap"> <div class="play-pause"></div> ' +
+                        '<section class="song-meta"> ' +
+                        '<div class="artist">Magna Radio</div> ' +
+                        '<div style="color: red; font-weight: bold" class="song">VIVO</div> ' +
+                        '<div class="timeline"></div> ' +
+                        '<!--<progress class="pcast-progress" value="0"></progress>--> ' +
+                        '<span class="pcast-currenttime pcast-time"></span> ' +
+                        '</section> ' +
+                        '<audio onended="buscaStr(true);" id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> ' +
+                        '</audio> </div> </div>');
+                        console.log("Radio encendida, montando...");
+            } else {
+                //alert("magna umounted");
+                console.log("Radio apagada... intentando de nuevo en 1 minuto...");
+                playerMagna.html('<div class="player-container"> ' +
+                    '<div class="player-wrap"> ' +
+                    '<!-- <div class="play-pause"></div> --> ' +
+                    '<section class="song-meta"> ' +
+                    '<div class="artist">Magna Radio</div> ' +
+                    '<div style="color: grey" class="song">Fuera de línea</div> ' +
+                    '<div class="timeline"></div> ' +
+                    '<!--<progress class="pcast-progress" value="0"></progress>--> ' +
+                    '<span class="pcast-currenttime pcast-time"></span> ' +
+                    '</section> <!--<audio id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> </audio>--> ' +
+                    '</div> </div>');
+                    setTimeout(function(){buscaStr()}, 15000);
+            }
+        });
+    }
+//FIN BUSCA STREAM

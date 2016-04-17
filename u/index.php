@@ -51,7 +51,7 @@
             </div>
             <aside class="col-md-3 hidden-xs hidden-sm" id="side"><!--LATERAL::CHAT Y PLAYER SC-->
                 <!--PLAYER MAGNA-->
-                <?php include_once("code/fragments/magna-player.html"); ?>
+                <div id="playerMagna"></div>
                 <!-- CHAT -->
                 <?php include_once("code/fragments/chat.html"); ?>
             </aside>

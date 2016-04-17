@@ -5,29 +5,27 @@
 // See http://codepen.io/davatron5000/pen/uqktG
 
 (function(){
-    $(".play-pause").click(function() {
+    $(document.body).on("click", ".play-pause", function() {
 
         if($(this).hasClass('pausing')){
             $(this).removeClass('pausing');
             $(this).addClass('playing');
-            $(this).css("background-image", "url(http://dev.steelehouse.com/codepen/play-to-pause-faster.gif)");
-            audio.play();
+            $(this).css("background-image", "url(media/images/player/play-to-pause-faster.gif)");
+            $('#main-audio')[0].play();
         }
         else if($(this).hasClass('playing')){
             $(this).removeClass('playing');
             $(this).addClass('pausing');
-            $(this).css("background-image", "url(http://dev.steelehouse.com/codepen/pause-to-play-faster.gif)");
-            audio.pause();
+            $(this).css("background-image", "url(media/images/player/pause-to-play-faster.gif)");
+            $('#main-audio')[0].pause();
         }
         else {
             $(this).addClass('playing');
-            $(this).css("background-image", "url(http://dev.steelehouse.com/codepen/play-to-pause-faster.gif)");
-            audio.play();
+            $(this).css("background-image", "url(media/images/player/play-to-pause-faster.gif)");
+            $('#main-audio')[0].play();
         }
 
     });
-
-
 
     var pcastPlayers = document.querySelectorAll('.player-container');
     var speeds = [ 1, 1.5, 2, 2.5, 3, 0.5 ]
@@ -40,9 +38,9 @@
 
 
 
-        var progress = player.querySelector('.pcast-progress');
+        var progress = player.querySelector('.pcast-progress')[0];
 
-        var currentTime = player.querySelector('.pcast-currenttime');
+        var currentTime = player.querySelector('.pcast-currenttime')[0];
 
         var currentSpeedIdx = 0;
 
@@ -61,7 +59,7 @@
             if (hours   <= 1) { var time = minutes+':'+seconds; }
 
             return time;
-        }
+        };
 
         audio.addEventListener('loadedmetadata', function(){
             progress.setAttribute('max', Math.floor(audio.duration));
