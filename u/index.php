@@ -16,10 +16,12 @@
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
     <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
+    <script src="//connect.soundcloud.com/sdk.js"></script>
     <script src="http://w.soundcloud.com/player/api.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
     <title>Magna | Home</title>
@@ -41,9 +43,10 @@
 
         <section class="row">
             <div id="noticias" class="col-md-9"><!--MURO DE NOTICIAS-->
+                <article id="status"></article>
                 <article>Esto es una noticia</article><!--PREVIEW DE NOTICIA-->
             </div>
-            <aside class="col-md-3 hidden-xs hidden-sm"><!--LATERAL::CHAT Y PLAYER SC-->
+            <aside class="col-md-3 hidden-xs hidden-sm" id="side"><!--LATERAL::CHAT Y PLAYER SC-->
                 <!--PLAYER SC-->
 
                 <!-- CHAT -->

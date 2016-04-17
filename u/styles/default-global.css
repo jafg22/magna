@@ -29,6 +29,16 @@
 #navBar ul li:hover{
     background-color: ghostwhite;
 }
+
+#status{
+    text-align: center;
+    display: none;
+}
+
+#noticias .tituSC{/*TITULOS SOUNDCLOUD*/
+    text-align: center;
+    font-family: bitterbold;
+}
 /*INDEX*/
 
 /* CHAT */

@@ -3,18 +3,25 @@ var wsUri = "ws://localhost:1024/magna/u/code/wsserver/server.php";
 
 //DOM
 var chat = $("#chatF");
+var noticias = $("#noticias");
+var lateral = $("#side");
+var estado = $("#status");
+
 var home = $("#navHome");
 var diferido = $("#navDiferido");
 var cultura = $("#navCultura");
 var nosotros = $("#navNosotros");
 
 $(document).ready(function(){
-    SCinit();
     descargaCuerpo();
 });
 
 //FUNCIONES DUMP DATA
 function descargaCuerpo(){
+    noticias.html("");
+    estado.hide(500);
+    estado.html("<i class='fa fa-circle-thin faa-flash animated'>&nbsp;</i><h2>Cargando</h2>");
+    estado.show(500);
     var path = window.location.search.split("/");
     //alert(path + " " + path.length);
     switch (path.length){
@@ -34,7 +41,7 @@ function descargaCuerpo(){
                         break;
                     case "diferido":
                         //alert("Quiero diferido");
-
+                        SCinit();
                         break;
                     case "cultura":
                         alert("Quiero cultura");
@@ -79,6 +86,41 @@ function descargaCuerpo(){
 function SCinit(){
     SC.initialize({
         client_id: 'a23f4aab06d0713719783b97bfe94794'
+    });
+
+    SC.get('/users/219630919/tracks', null, function(tracks) {//Obtiene pistas de magna radio
+        $(tracks).each(function(index, track) {
+            $.ajax({
+                async:true,
+                type:'GET',
+                url:'http://soundcloud.com/oembed',
+                data: {url:track.permalink_url, format:'json', maxheight:230},
+                success: function(data, status, jqXHR){
+                    estado.hide(500);
+                    estado.html("");
+                    noticias.append("<h1 class='h1 tituSC'>"+ track.title +"</h1>");
+                    noticias.append("<div>"+ data.html +"</div>");
+                    noticias.append("<hr><tr><hr>");
+                },
+                error: function(jqXHR, status, error){
+                    alert(status + ": " + error);
+                    //Your code on error here
+                },
+                //Validation for different status codes
+                statusCode: {
+                    404: function(){
+                        //Your code here
+                    }
+                }
+            });
+            //jQuery ajax function End
+            //END AJAX
+        });
+        /*SC.oEmbed('http://soundcloud.com/user-22267088/rec-prueba-1604161754', {
+            element: document.getElementById('noticia')
+        }).then(function(embed){
+            alert('oEmbed response: ', embed);
+        });*/
     });
 }
 //SOUNDCLOUD
