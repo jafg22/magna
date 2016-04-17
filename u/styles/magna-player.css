@@ -1,0 +1,76 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+.player-container * {
+    box-sizing:border-box;
+    }
+
+.player-container {
+    display:block;
+    width:100%;
+    height:100%;
+    margin:0 auto;
+
+    background-image: linear-gradient(to left, saddlebrown 20%, whitesmoke 100%);
+    border-radius: 0px 10px 10px 0px;
+}
+.player-wrap {
+    display:block;
+    z-index:1;
+    width:230px;
+    height:91px;
+    color:white;
+    position:relative;
+}
+
+.player-wrap:before{
+@extend %circle-corner;
+    left:-45px;
+}
+
+.player-wrap:after{
+@extend %circle-corner;
+    right:-45px;
+}
+
+.play-pause {
+    width:74px;
+    height:72px;
+    border-radius: 50%;
+    display:inline-block;
+    position:absolute;
+    top:10px;
+    left: 2px;
+    background: no-repeat url('http://dev.steelehouse.com/codepen/play-dark.gif');
+    cursor:pointer;
+
+}
+progress {
+    height: 7px;
+    border-radius:7px;
+    width:40%;
+    background-color:white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+progress[value]::-webkit-progress-value  {
+    background: #c34747;
+    padding-left:6px;
+}
+.song-meta {
+    font-family:FontAwesome;
+
+    z-index:5;
+    width:100%;
+    padding-right:10px;
+    padding-top:10px;
+    text-align: right;
+}

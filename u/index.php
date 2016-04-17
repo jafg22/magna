@@ -15,10 +15,12 @@
     <link rel="icon" type="image/png" href="media/images/favicon/magna-icon.png"/>
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
     <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
     <link href="styles/fuentes/cinzel/stylesheet.css">
+    <link href="styles/magna-player.css" rel="stylesheet">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
@@ -48,8 +50,8 @@
                 <article>Esto es una noticia</article><!--PREVIEW DE NOTICIA-->
             </div>
             <aside class="col-md-3 hidden-xs hidden-sm" id="side"><!--LATERAL::CHAT Y PLAYER SC-->
-                <!--PLAYER SC-->
-
+                <!--PLAYER MAGNA-->
+                <?php include_once("code/fragments/magna-player.html"); ?>
                 <!-- CHAT -->
                 <?php include_once("code/fragments/chat.html"); ?>
             </aside>
@@ -57,5 +59,6 @@
     </main>
     <footer></footer>
     <script src="scripts/default-index.js"></script>
+    <script src="scripts/magna-player.js"></script>
 </body>
 </html>
