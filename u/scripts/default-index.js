@@ -19,15 +19,15 @@ $(document).ready(function(){
 //FUNCIONES DUMP DATA
 function descargaCuerpo(){
     noticias.html("");
-    estado.hide(500);
-    estado.html("<i class='fa fa-circle-thin faa-flash animated'>&nbsp;</i><h2>Cargando</h2>");
-    estado.show(500);
+    estado.html("<i class='fa fa-circle-thin faa-flash animated'>&nbsp;</i><small>Cargando...</small>");
+    estado.slideDown(500);
     var path = window.location.search.split("/");
     //alert(path + " " + path.length);
     switch (path.length){
         case 1:
             if (path[0] === ""){
                 //alert("Soy home!!!");
+                estado.slideUp(500);
             }
             break;
         case 2:
@@ -96,8 +96,7 @@ function SCinit(){
                 url:'http://soundcloud.com/oembed',
                 data: {url:track.permalink_url, format:'json', maxheight:230},
                 success: function(data, status, jqXHR){
-                    estado.hide(500);
-                    estado.html("");
+                    estado.slideUp(500);
                     noticias.append("<h1 class='h1 tituSC'>"+ track.title +"</h1>");
                     noticias.append("<div>"+ data.html +"</div>");
                     noticias.append("<hr><tr><hr>");

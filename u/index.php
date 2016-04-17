@@ -18,6 +18,7 @@
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
+    <link href="styles/fuentes/cinzel/stylesheet.css">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
@@ -27,10 +28,10 @@
     <title>Magna | Home</title>
 </head>
 <body>
-    <header class="container"><!--SEMANTICO::HEADER-->
+    <header class="container-fluid"><!--SEMANTICO::HEADER-->
         <div class="row">
             <div id="header" class="col-xs-12"><!--HEADER VISIBLE-->
-                <h1 class="h1">Magna</h1>
+                <h1 class="h1">Magna</h1><small>-slogan-</small>
             </div>
         </div>
     </header>
@@ -38,12 +39,12 @@
         <section class="row">
             <div id="menuSecciones" class="col-xs-12"><!--SECCIONES RADIO-->
                 <?php include_once("code/fragments/navbar.html"); ?>
+                <div id="status" class="col-xs-12"></div>
             </div>
         </section>
 
         <section class="row">
             <div id="noticias" class="col-md-9"><!--MURO DE NOTICIAS-->
-                <article id="status"></article>
                 <article>Esto es una noticia</article><!--PREVIEW DE NOTICIA-->
             </div>
             <aside class="col-md-3 hidden-xs hidden-sm" id="side"><!--LATERAL::CHAT Y PLAYER SC-->
