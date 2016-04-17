@@ -7,7 +7,7 @@
     $conex->conectar();
 
     $conex->sqlQuery = "call sp_insUsuario('".$valores['usuario']."','".$valores['correo']."','".$valores['contra']."',
-    				'".$valores['nom']."','".$valores['ape']."','".$valores['isAdm']."','".$valores['inciden']."','".$valores['est']."')";
+    				'".ucwords(strtolower($valores['nom']))."','".ucwords(strtolower($valores['ape']))."','".$valores['isAdm']."','".$valores['inciden']."','".$valores['est']."')";
 
 
 	 if ($conex->execute()){

@@ -1,9 +1,11 @@
 <?php 
 
 	include_once('clsConexion.inc');
+	include_once('pdoClassConex.inc');
 	include_once('codigos/isAjax.php');
 
-	$conex = new mysqlConn("root", "magna", "localhost", "magna");    
+	$conex = new mysqlConn("root", "magna", "localhost", "magna");
+	$conexPDO = new pdoConexion("localhost","mysql","root","magna","magna");	    
 
 	header("Content-Type:application/json");
 	header("Accept:application/json");
@@ -20,6 +22,8 @@
                     	include_once("codigos/login.php");
                 	}else if($request[0] == 'restore'){
                 		include_once("codigos/restoreSession.php");
+                	}else if ($request[0] == 'noticias') {
+                		include_once("codigos/noticias.php");
                 	}
 				}					
 				break;
