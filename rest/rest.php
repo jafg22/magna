@@ -24,6 +24,8 @@
                 		include_once("codigos/restoreSession.php");
                 	}else if ($request[0] == 'noticias') {
                 		include_once("codigos/noticias.php");
+                	}else if ($request[0] == 'buscaDupli') {
+                		include_once("codigos/buscaDupli.php");
                 	}
 				}					
 				break;
