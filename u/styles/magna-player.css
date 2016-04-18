@@ -16,7 +16,7 @@
 .player-wrap {
     display:block;
     z-index:1;
-    width:230px;
+    width:100%;
     height:91px;
     color:white;
     position:relative;
@@ -39,7 +39,7 @@
     display:inline-block;
     position:absolute;
     top:10px;
-    left: 10px;
+    left: 15px;
     background: no-repeat url('../media/images/player/play-dark.gif');
     cursor:pointer;
 
