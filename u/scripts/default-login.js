@@ -97,12 +97,10 @@ function buscaduplicados(field){
 }
 
 function loadCaptcha(){
-    alert("hey");
     grecaptcha.render('captcha', {
         'sitekey' : '6LeWuB0TAAAAAA_5eaCxLHKLmwU68DclQPSgKhN3',
         'size' : 'compact',
     });
-    captchResponse = grecaptcha.getResponse(0);
 }
 
 
