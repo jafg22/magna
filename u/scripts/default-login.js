@@ -11,10 +11,14 @@ var modalApe = $("#txtApe");
 var modalPsswd = $("#txtPasswd");
 var modalPsswd2 = $("#txtPasswd2");
 
+//VALIDA CAPTCHA
+var captchResponse = "";
+
 modal.submit(function(evt){
     evt.preventDefault();
-    alert($("#g-recaptcha-response").val() + " respuesta");
-    if (modalEmailGroup[0].getAttribute("class") == "form-group has-success" && modalUsuGroup[0].getAttribute("class") == "form-group has-success"){
+    //alert($("#g-recaptcha-response").val() + " respuesta");
+
+    /*if (modalEmailGroup[0].getAttribute("class") == "form-group has-success" && modalUsuGroup[0].getAttribute("class") == "form-group has-success"){
         if (modalPsswd.val() === modalPsswd2.val()){
             var data = {
                 email:modalEmail.val(),
@@ -44,7 +48,7 @@ modal.submit(function(evt){
         alert("Su correo ya está ocupado en nuestra Base de Datos. \nPor favor, escriba otro.");
     } else {
         alert("Lamentamos el inconveniente.\n\nTenemos inconsistencias en la información.\nPor favor, escriba de nuevo su e-mail.");
-    }
+    }*/
 });
 
 //Busca por email repetido
@@ -90,6 +94,15 @@ function buscaduplicados(field){
                 }
             }
         });
+}
+
+function loadCaptcha(){
+    alert("hey");
+    grecaptcha.render('captcha', {
+        'sitekey' : '6LeWuB0TAAAAAA_5eaCxLHKLmwU68DclQPSgKhN3',
+        'size' : 'compact',
+    });
+    captchResponse = grecaptcha.getResponse(0);
 }
 
 

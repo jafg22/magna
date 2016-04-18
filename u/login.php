@@ -14,7 +14,7 @@
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <title>Magna | Login</title>
 </head>
 <body>
