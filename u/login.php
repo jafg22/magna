@@ -9,11 +9,11 @@
     <link href="styles/default-global.css" type="text/css" rel="stylesheet">
     <link href="third-party/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script src="scripts/default-login.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <title>Magna | Login</title>
 </head>
@@ -33,7 +33,7 @@
         </div>
 
         <!-- MODAL FORM -->
-        <?php include_once('code/html/modal-login.php'); ?>
+        <?php include_once('code/html/modal-login.html'); ?>
     </section>
     <footer>
         <h4>Powered by: <a href="mailto:emilio.gm00@gmail.com">CRC</a><small>.&nbsp;UTN, Campus Juan Manuel Mora Porras, 2015 <i class="fa fa-creative-commons"></i></small></h4>
@@ -41,6 +41,7 @@
     <div id="qStatus">
     </div>
 </main>
+<script src="scripts/default-login.js"></script>
 <!-- If JS not enabled -->
 <?php include_once('code/noscript') ?>
 </body>

@@ -5,25 +5,35 @@
             <form class="form-horizontal" id="modalForm">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="tituModal">Registrarme</h4>
+                    <h4 class="modal-title" id="tituModal">Formulario de registro</h4>
                 </div>
                 <div class="modal-body" id="modal-body">
                     <!-- modal body begin -->
                     <div class="container-fluid">
                         <div class="row">
-                            <div>
-                                <h1 class="h3" style="text-align: center;" id="modalInfo">Formulario de registro</h1>
-                                <br>
+                            <div><br>
                                 <div class="form-group" id="modalEmailgroup">
                                     <label for="txtEmail" class="col-sm-4 control-label">Correo electrónico:</label>
                                     <div class="col-sm-4">
                                         <input required type="email" class="form-control" maxlength="50" id="txtEmail" name="txtEmail" placeholder="Su e-mail">
                                     </div>
                                 </div>
+                                <div class="form-group" id="modalUsugroup">
+                                    <label for="txtUser" class="col-sm-4 control-label">Usuario:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="email" class="form-control" maxlength="50" id="txtUser" name="txtUser" placeholder="Su nombre de usuario">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="txtNom" class="col-sm-4 control-label">Nombre:</label>
                                     <div class="col-sm-4">
-                                        <input required type="text" class="form-control" id="txtNom" name="txtNom" maxlength="35" placeholder="El nombre que desees">
+                                        <input required type="text" class="form-control" id="txtNom" name="txtNom" maxlength="35" placeholder="Su nombre">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtApe" class="col-sm-4 control-label">Apellido:</label>
+                                    <div class="col-sm-4">
+                                        <input required type="text" class="form-control" id="txtApe" name="txtApe" maxlength="35" placeholder="Su apellido">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -45,18 +55,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="eula" class="col-sm-4 control-label">Acepto <a target="_blank" href="license/eula.php">EULA</a></label>
+                                    <label class="col-sm-4 control-label">Seguridad:</a></label>
                                     <div class="col-sm-1">
-                                        <?php
-                                        include("code/php/recaptchalib/lib/ReCaptchaToken.php");
-                                        $config = ['site_key' => 'foo', 'site_secret' => 'bar'];
-                                        $recaptchaToken = new \ReCaptchaSecureToken\ReCaptchaToken($config);
-
-                                        //Generate recaptcha token
-                                        $sessionId = uniqid('recaptcha');
-                                        $secureToken = $recaptchaToken->secureToken($sessionId);
-                                        ?>
-                                        <div class="g-recaptcha" data-sitekey="foo" data-stoken="<?PHP echo $secureToken; ?>"></div>
+                                        <div class="g-recaptcha" data-sitekey="6LeWuB0TAAAAAA_5eaCxLHKLmwU68DclQPSgKhN3"></div>
                                     </div>
                                 </div>
                             </div>

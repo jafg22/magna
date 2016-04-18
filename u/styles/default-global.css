@@ -89,7 +89,11 @@ label{
 }
 
 #btnEnter, #btnRegis{
-    width: 145px;
+    position: relative;
+
+    width: 146px;
+    left: 50%;
+    margin-left: -73px;
 }
 
 #auxh4{ /*NO TIENE CUENTA?*/
@@ -99,7 +103,6 @@ label{
 }
 
 footer{
-    position: absolute;
     top: 92%;
 }
 /*LOGIN*/
