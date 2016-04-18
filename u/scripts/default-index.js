@@ -187,23 +187,33 @@ function ws(){
                         '</section> ' +
                         '<audio onended="buscaStr(true);" id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> ' +
                         '</audio> </div> </div>');
-                        console.log("Radio encendida, montando...");
+                        console.log("Radio encendida, inicializando...");
             } else {
                 //alert("magna umounted");
-                console.log("Radio apagada... intentando de nuevo en 1 minuto...");
+                console.log("Radio apagada... intentando de nuevo en 15 sec.");
                 playerMagna.html('<div class="player-container"> ' +
                     '<div class="player-wrap"> ' +
-                    '<!-- <div class="play-pause"></div> --> ' +
                     '<section class="song-meta"> ' +
                     '<div class="artist">Magna Radio</div> ' +
                     '<div style="color: grey" class="song">Fuera de línea</div> ' +
                     '<div class="timeline"></div> ' +
-                    '<!--<progress class="pcast-progress" value="0"></progress>--> ' +
                     '<span class="pcast-currenttime pcast-time"></span> ' +
-                    '</section> <!--<audio id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> </audio>--> ' +
+                    '</section>' +
                     '</div> </div>');
                     setTimeout(function(){buscaStr()}, 15000);
             }
+        }).fail(function(){
+            console.log("Icecast apagado... intentando de nuevo en 1 min.");
+            playerMagna.html('<div class="player-container"> ' +
+                '<div class="player-wrap"> ' +
+                '<section class="song-meta"> ' +
+                '<div class="artist">Magna Radio</div> ' +
+                '<div style="color: grey" class="song">Fuera de línea</div> ' +
+                '<div class="timeline"></div> ' +
+                '<span class="pcast-currenttime pcast-time"></span> ' +
+                '</section>' +
+                '</div> </div>');
+            setTimeout(function(){buscaStr()}, 60000);
         });
     }
 //FIN BUSCA STREAM
