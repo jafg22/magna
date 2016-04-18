@@ -10,6 +10,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" http-equiv="content-type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- ESTILOS CSS Y FAVICON-->
     <link rel="icon" type="image/png" href="media/images/favicon/magna-icon.png"/>
@@ -40,7 +41,7 @@
     <main class="container-fluid"><!--PARTE PRINCIPAL DE PAGINA-->
         <section class="row">
             <div id="menuSecciones" class="col-xs-12"><!--SECCIONES RADIO-->
-                <?php include_once("code/fragments/navbar.html"); ?>
+                <?php include_once("code/html/navbar.html"); ?>
                 <div id="status" class="col-xs-12"></div>
             </div>
         </section>
@@ -53,7 +54,7 @@
                 <!--PLAYER MAGNA-->
                 <div id="playerMagna"></div>
                 <!-- CHAT -->
-                <?php include_once("code/fragments/chat.html"); ?>
+                <?php include_once("code/html/chat.html"); ?>
             </aside>
         </section>
     </main>

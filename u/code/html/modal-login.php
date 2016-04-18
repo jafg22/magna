@@ -40,8 +40,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="eula" class="col-sm-4 control-label">Acepto <a target="_blank" href="license/eula.php">EULA</a></label>
+                                    <div class="col-sm-1" style="margin-top: 7px;">
+                                        <input required checked type="checkbox" class="checkbox-inline" id="eula" name="eula">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eula" class="col-sm-4 control-label">Acepto <a target="_blank" href="license/eula.php">EULA</a></label>
                                     <div class="col-sm-1">
-                                        <input required checked type="checkbox" class="form-control" id="eula" name="eula">
+                                        <?php
+                                        include("code/php/recaptchalib/lib/ReCaptchaToken.php");
+                                        $config = ['site_key' => 'foo', 'site_secret' => 'bar'];
+                                        $recaptchaToken = new \ReCaptchaSecureToken\ReCaptchaToken($config);
+
+                                        //Generate recaptcha token
+                                        $sessionId = uniqid('recaptcha');
+                                        $secureToken = $recaptchaToken->secureToken($sessionId);
+                                        ?>
+                                        <div class="g-recaptcha" data-sitekey="foo" data-stoken="<?PHP echo $secureToken; ?>"></div>
                                     </div>
                                 </div>
                             </div>
