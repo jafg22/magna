@@ -195,39 +195,55 @@ modalEmail.on("focusout", function(){
 });
 
 modalUser.on("focusout", function(){
-    buscaduplicados("user");
+    buscaduplicados("usu");
 });
 
 function buscaduplicados(field){
-    var email = modalEmail.val();
-    if (field === "email"){
-        //data con email
+    var valor = "";
+    if (field == "email"){
+        valor = modalEmail.val();
     } else {
-        //data con user
+        valor = modalUser.val();
     }
-    var data = {campo:field, data:"123"};
-    $.get("../rest/rest.php/buscadupli", data,
+    if (valor === ""){
+        return;
+    }
+    var data = {tipo:field, valor:valor};
+    $.get("../rest/rest.php/buscaDupli", data,
         function(data, status){
+            //alert(data.status + status);
             if (status === "success"){
                 if (data.status == 200){
-                    if (data.data.info == 'disponible'){
+                    if (data.data[0] == 'disponible'){
                         //PREGUNTA SI ES EMAIL O USUARIO
-
-
-                        modalEmailGroup[0].setAttribute("class", "form-group has-success");
-                        modalTitle.html('<i style="color: lightseagreen" class="fa fa-check faa-flash animated">&nbsp;</i>Correo electrónico disponible.');
-                        setTimeout(function(){
-                            modalTitle.html('Formulario de registro');
-                        }, 5000);
+                        if (field === "email"){
+                            modalEmailGroup[0].setAttribute("class", "form-group has-success");
+                            modalTitle.html('<i style="color: lightseagreen" class="fa fa-check faa-flash animated">&nbsp;</i>Correo electrónico disponible.');
+                            setTimeout(function(){
+                                modalTitle.html('Formulario de registro');
+                            }, 5000);
+                        } else {
+                            modalUsuGroup[0].setAttribute("class", "form-group has-success");
+                            modalTitle.html('<i style="color: lightseagreen" class="fa fa-check faa-flash animated">&nbsp;</i>Usuario disponible.');
+                            setTimeout(function(){
+                                modalTitle.html('Formulario de registro');
+                            }, 5000);
+                        }
                     } else {
                         //PREGUNTA SI ES EMAIL O USUARIO
-
-
-                        modalEmailGroup[0].setAttribute("class", "form-group has-error");
-                        modalTitle.html('<i style="color: red" class="fa fa-warning faa-flash animated">&nbsp;</i>Correo electrónico ya ocupado.');
-                        setTimeout(function(){
-                            modalTitle.html('Formulario de registro');
-                        }, 5000);
+                        if (field == "email"){
+                            modalEmailGroup[0].setAttribute("class", "form-group has-error");
+                            modalTitle.html('<i style="color: red" class="fa fa-warning faa-flash animated">&nbsp;</i>Correo electrónico ya ocupado.');
+                            setTimeout(function(){
+                                modalTitle.html('Formulario de registro');
+                            }, 5000);
+                        } else {
+                            modalUsuGroup[0].setAttribute("class", "form-group has-error");
+                            modalTitle.html('<i style="color: red" class="fa fa-warning faa-flash animated">&nbsp;</i>Usuario ya ocupado.');
+                            setTimeout(function(){
+                                modalTitle.html('Formulario de registro');
+                            }, 5000);
+                        }
                     }
                 }
             }
