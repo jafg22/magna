@@ -36,6 +36,8 @@
 				if (sizeof($request == 1)){
 					if ($request[0] == 'signup'){//Solicitud de login
                     	include_once("codigos/signup.php");
+                	}if ($request[0] == 'bortoken'){//Solicitud de login
+                    	include_once("codigos/bortoken.php");
                 	}
 
 				}
