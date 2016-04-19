@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //BD CONEXION
     include_once("../rest/clsConexion.inc");
     $cnx = new mysqlConn("root", "magna", "localhost", "magna");
@@ -21,6 +22,7 @@
     <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
     <link href="styles/fuentes/cinzel/stylesheet.css">
+    <link href="styles/fuentes/alex-br/stylesheet.css" rel="stylesheet">
     <link href="styles/magna-player.css" rel="stylesheet">
 
     <!-- SCRIPTS -->
@@ -54,7 +56,10 @@
                 <!--PLAYER MAGNA-->
                 <div id="playerMagna"></div>
                 <!-- CHAT -->
-                <?php include_once("code/html/chat.html"); ?>
+                <?php
+                if (isset($_SESSION['user'])){
+                    include_once("code/html/chat.html");
+                } ?>
             </aside>
         </section>
     </main>

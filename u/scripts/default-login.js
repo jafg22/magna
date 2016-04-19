@@ -1,3 +1,9 @@
+//Login form vars
+var loginForm = $("#loginForm");
+var txtUser = $("#inputEmail3");
+var txtPsswd = $("#inputPassword3");
+var recuerdame = $("#recuerdame");
+
 //Modal vars
 var modal = $("#myModal");
 var modalForm = $("#modalForm");
@@ -15,10 +21,70 @@ var modalPsswd2 = $("#txtPasswd2");
 var captchResponse = "";
 
 $(document).ready(function(){
-    $(".fa").removeClass("animated-hover");
-    $(".fa").addClass("faa-animated");
-    setTimeout(function(){ $(".fa").removeClass("animated"); }, 3000)
+    /*var token = localStorage.getItem("sst");
+    if (token != 0 && token != undefined && token != null){
+        $.post("rest/session/eraseToken.php", {token:token},
+            function(data, status){if (data){console.log("Token viejo borrado de BD")}});
+        localStorage.removeItem("sst");
+    }*/
 });
+
+//ACCIONES LOGIN
+//Acciones en submit de form
+loginForm.submit(function(evt){
+    evt.preventDefault();
+    var url = "../rest/rest.php/login";
+
+    var recuerda;
+    if (recuerdame[0].checked){
+        recuerda = "s";
+        var datos = {
+            usu:txtUser.val(),
+            con:txtPsswd.val(),
+            per:recuerda
+        };
+    } else {
+        var datos = {
+            usu:txtUser.val(),
+            con:txtPsswd.val(),
+        };
+    }
+    //Simple Json build
+    var datos = {
+        usu:txtUser.val(),
+        con:txtPsswd.val(),
+        per:recuerda
+    };
+    //jQuery ajax function Begin
+    $.ajax({
+        async:false,
+        type:'GET',
+        url:url,
+        data: datos,
+        success: function(data, status, jqXHR){
+            if (data.status == 200){
+                var token = data.data.token;
+                if (token != 0 && token != undefined && token != null){
+                    //alert(token);
+                    localStorage.removeItem("sst");
+                    localStorage.setItem("sst", token);
+                    location.href = "index.php";
+                }
+            }
+        },
+        error: function(jqXHR, status, error){
+            //alert(data + ": " + status + "\n");
+            console.log("Error en login REST");
+        },
+        //Validation for different status codes
+        statusCode: {
+            400: function(){
+
+            }
+        }
+    });
+});
+//ACCIONES LOGIN
 
 modal.submit(function(evt){
     evt.preventDefault();

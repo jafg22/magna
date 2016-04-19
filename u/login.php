@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if (isset($_SESSION['user'])){
+        unset($_SESSION['NomC']);
+        unset($_SESSION['isAdm']);
+        if (isset($_SESSION['tok'])){
+            //Borra token
+        }
+        session_destroy();
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -46,7 +57,7 @@
                     </div>
                     <hr><br>
                 </div>
-                <?php include_once("code/html/signup-login.html"); ?>
+                <?php include_once("code/html/signin-login.html"); ?>
             </article>
         </div>
 
