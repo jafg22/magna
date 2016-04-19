@@ -34,7 +34,7 @@
     <header class="container-fluid"><!--SEMANTICO::HEADER-->
         <div class="row">
             <div id="header" class="col-xs-12"><!--HEADER VISIBLE-->
-                <h1 class="h1">Magna</h1><small>-slogan-</small>
+                <h1 class="h1">Magna</h1><small class="slogan">Más que un proyecto final.-</small>
             </div>
         </div>
     </header>

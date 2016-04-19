@@ -3,6 +3,12 @@
 /*GLOBALS*/
 
 /*INDEX*/
+
+html, main{
+    width: 100%;
+    height: 100%;
+}
+
 #header{
     font-family: cinzel_decorativebold;
     font-weight: bold;
@@ -11,6 +17,12 @@
     padding-bottom: 10pt;
     background-image: linear-gradient(0deg, royalblue 2%, indianred 4%, whitesmoke 7%);
 }
+
+#footer{
+    font-family: bitterbold;
+    background-image: linear-gradient(-15deg, royalblue 3%, indianred 6%, white 9%);
+}
+
 
 #header h1{
     font-size: 42px;
@@ -84,6 +96,12 @@
     margin-bottom: 30pt;
 }
 
+.slogan{
+    font-family: alex_brushregular;
+    font-size: x-large;
+    padding-left: 10pt;
+}
+
 label{
     text-align: left;
 }
@@ -103,6 +121,15 @@ label{
 }
 
 footer{
-    top: 92%;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-top: -39px;
 }
+
+.loginSide{
+    font-family: cinzel_decorativeregular;
+    text-align: justify;
+}
+
 /*LOGIN*/

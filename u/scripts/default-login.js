@@ -14,6 +14,12 @@ var modalPsswd2 = $("#txtPasswd2");
 //VALIDA CAPTCHA
 var captchResponse = "";
 
+$(document).ready(function(){
+    $(".fa").removeClass("animated-hover");
+    $(".fa").addClass("faa-animated");
+    setTimeout(function(){ $(".fa").removeClass("animated"); }, 3000)
+});
+
 modal.submit(function(evt){
     evt.preventDefault();
     //alert($("#g-recaptcha-response").val() + " respuesta");
@@ -97,12 +103,10 @@ function buscaduplicados(field){
 }
 
 function loadCaptcha(){
-    alert("hey");
     grecaptcha.render('captcha', {
         'sitekey' : '6LeWuB0TAAAAAA_5eaCxLHKLmwU68DclQPSgKhN3',
         'size' : 'compact',
     });
-    captchResponse = grecaptcha.getResponse(0);
 }
 
 
