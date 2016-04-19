@@ -12,7 +12,11 @@ Select idS,nomS,idN,tituloN,fechaN,usuarioN,cuerpoN,imageA,archivoA from dinamic
 
 CREATE VIEW vst_sec_cultura
 AS
-Select idS,idN,tituloN,fechaN,usuarioN,cuerpoN,imageA FROM dinamic WHERE idS = 001; 
+Select idS,idN,tituloN,fechaN,usuarioN,cuerpoN,imageA FROM dinamic WHERE idS = 001;
+
+CREATE VIEW vst_uninoti
+AS
+SELECT idN,tituloN,fechaN,usuarioN,cuerpoN,imageA FROM dinamic;  
 
 INSERT INTO `magna`.`seccionesn` (`idSeccion`, `nomSeccion`, `descripSeccion`, `color`, `estado`) VALUES ('001', 'cultura', 'un resumen de las ultimas noticias en algunas secciones', 'red', '1');
 INSERT INTO `magna`.`seccionesn` (`idSeccion`, `nomSeccion`, `descripSeccion`, `color`, `estado`) VALUES ('002', 'acerca de', 'trata temas populares de el ambito recreativo', 'blue', '1');
