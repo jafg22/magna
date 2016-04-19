@@ -1,4 +1,6 @@
 <?php
+    date_default_timezone_set("America/Costa_Rica");
+
     session_start();
     if (isset($_SESSION['user'])){
         unset($_SESSION['user']);
@@ -68,7 +70,7 @@
     <footer class="container-fluid hidden-xs">
         <div class="row">
             <div id="footer" class="col-xs-12">
-                <h4>Powered by: <a href="mailto:service.desk@magna.com">CRC</a><small>.&nbsp;UTN, Campus Juan Manuel Mora Porras, 2015 <i class="fa fa-creative-commons"></i></small></h4>
+                <h4>Powered by: <a href="mailto:service.desk@magna.com">CRC</a><small>.&nbsp;UTN, Campus Juan Manuel Mora Porras, <?php echo date("Y"); ?> <i class="fa fa-creative-commons"></i></small></h4>
             </div>
         </div>
     </footer>

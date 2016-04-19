@@ -1,0 +1,34 @@
+15 de Noviembre del 2015
+
+*/************************************/*
+*/Acuerdo de licencia de usuario final/*
+*/************************************/*
+
+Pautas Básicas:
+
+    1.-Este sitio no posee derechos de propiedad intelectual. Es de índole académico 
+    y de investigación.
+    2.-El usuario puede descargar el sitio mediante técnicas que no sobrepasen los 
+    límites de lo ético y moral.
+    3.-El usuario puede hacer reproducción parcial o total del contenido en este 
+    sitio siempre y cuando respete las normas estipuladas en la licencia Creative 
+    Commons del xxxx de xx del xxxx versión x.xx.
+    4.-El usuario es libre de utilizar las prestaciones del sitio web sin límites 
+    mientras este esté disponible.
+    5.-El desarrollador se absuelve de cualquier conflicto legal en el que puedan 
+    incurrir usuarios debido al uso del servicio web, tales como:
+        -Robo de contraseñas.
+        -Robo de identidad.
+        -Sustracción de la información.
+        -Etc.
+    6.-El usuario se compromete a estar consciente en todo momento del peligro que 
+    representa hacer uso de sesiones persistentes y acepta tener la total 
+    responsabilidad en la aplicación del mismo.
+    7.-Este documento es subordinado de/se encuentra extendido en los siguientes
+    enlaces:
+
+Licencia Creative Commons:
+http://micaguaiserver/licenciamiento/creative commons vX.XX.txt
+
+Pautas específicas y restricciones:
+http://micaguaiserver/ruta/a/documentoQueLeMeteElBolloATodosYVendeSuAlmaAGoogleAdSense.txt

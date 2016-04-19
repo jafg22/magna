@@ -3,6 +3,7 @@ var loginForm = $("#loginForm");
 var txtUser = $("#inputEmail3");
 var txtPsswd = $("#inputPassword3");
 var recuerdame = $("#recuerdame");
+var loginInfo = $("#loginTitle");
 
 //Modal vars
 var modal = $("#myModal");
@@ -21,12 +22,37 @@ var modalPsswd2 = $("#txtPasswd2");
 var captchResponse = "";
 
 $(document).ready(function(){
-    /*var token = localStorage.getItem("sst");
+    var token = localStorage.getItem("sst");
     if (token != 0 && token != undefined && token != null){
-        $.post("rest/session/eraseToken.php", {token:token},
-            function(data, status){if (data){console.log("Token viejo borrado de BD")}});
+        var url = "../rest/rest.php/bortoken";
+        var data = {tok:token};
+        data = JSON.stringify(data);
+        $.ajax({
+            async:false,
+            type:'POST',
+            url:url,
+            contentType:'application/json',
+            cache:false,
+            processData:false,
+            data:data,
+            success: function(data, status, jqXHR){
+                //alert(JSON.stringify(data) + ": " + status + "\n");
+                alert("...");
+                //Your code on success here
+            },
+            error: function(jqXHR, status, error){
+                //alert(status + ": " + error);
+                //Your code on error here
+            },
+            //Validation for different status codes
+            statusCode: {
+                404: function(){
+                    //Your code here
+                }
+            }
+        });
         localStorage.removeItem("sst");
-    }*/
+    }
 });
 
 //ACCIONES LOGIN
@@ -63,11 +89,23 @@ loginForm.submit(function(evt){
                     localStorage.removeItem("sst");
                     localStorage.setItem("sst", token);
                 }
-                location.href = "index.php";
+                loginInfo.html("<i style='color: mediumseagreen' class='fa fa-hand-lizard-o faa-shake animated'>&nbsp;</i>Hola " + data.data.NomC);//Cobra taka taka :v
+                setTimeout(function(){location.href = "index.php";}, 1000);
             }
         },
         error: function(jqXHR, status, error){
-            //alert(data + ": " + status + "\n");
+            var data = $.parseJSON(jqXHR.responseText);
+            if (data.data[0] == 2){
+                loginInfo.html("<i style='color: red' class='fa fa-warning faa-flash animated'>&nbsp;</i>Contraseña errónea");
+                txtPsswd.val("");
+                txtPsswd.focus();
+                setTimeout(function(){loginInfo.html("Inicio de sesión");}, 3000);
+            } else if (data.data[0] == 1){
+                loginInfo.html("<i style='color: red' class='fa fa-warning faa-flash animated'>&nbsp;</i>Este usuario no existe");
+                txtUser.val("");
+                txtUser.focus();
+                setTimeout(function(){loginInfo.html("Inicio de sesión");}, 3000);
+            }
             console.log("Error en login REST");
         },
         //Validation for different status codes
@@ -83,38 +121,72 @@ loginForm.submit(function(evt){
 modal.submit(function(evt){
     evt.preventDefault();
     //alert($("#g-recaptcha-response").val() + " respuesta");
-
-    /*if (modalEmailGroup[0].getAttribute("class") == "form-group has-success" && modalUsuGroup[0].getAttribute("class") == "form-group has-success"){
-        if (modalPsswd.val() === modalPsswd2.val()){
-            var data = {
-                email:modalEmail.val(),
-                nombre:modalNom.val(),
-                contra:modalPsswd.val()
-            };
-            $.post("../rest/rest.php/signup", data,
-                function(data, status){
-                    if (status === "success"){
-                        if (data.status == 200){
-                            alert("Gracias por registrarse\n\n" +
-                                "Datos de usuario:\n" +
-                                "Nombre: " + data.data.nombre + "\n" +
-                                "E-mail: " + data.data.email + "\n" +
-                                "Contaseña: *****" +
-                                "\n\n" +
-                                "Llave para usuarios avanzados: " + data.data.token + "\n\n" +
-                                "Puede proceder a iniciar sesión");
-                            modalEmailGroup[0].setAttribute("class", "form-group");
-                            modalTitle.html("<i class='fa fa-user'>&nbsp;</i>¡Aloha " + data.data.nombre + "!");
-                            modalForm[0].reset();
+    if ($("#g-recaptcha-response").val() != ""){
+        if (modalEmailGroup[0].getAttribute("class") == "form-group has-success"
+            && modalUsuGroup[0].getAttribute("class") == "form-group has-success"){
+            if (modalPsswd.val() === modalPsswd2.val()){
+                var url = "../rest/rest.php/signup";
+                var data = {
+                    usuario:modalUser.val(),
+                    correo:modalEmail.val(),
+                    contra:modalPsswd.val(),
+                    nom:modalNom.val(),
+                    ape:modalApe.val()
+                };
+                data = JSON.stringify(data);
+                $.ajax({
+                    async:true,
+                    type:'POST',
+                    url:url,
+                    contentType:'application/json',
+                    cache:false,
+                    processData:false,
+                    data:data,
+                    success: function(data, status, jqXHR){
+                        alert(JSON.stringify(data) + ": " + status + "\n");
+                        //Your code on success here
+                    },
+                    error: function(jqXHR, status, error){
+                        alert(status + ": " + error);
+                        //Your code on error here
+                    },
+                    //Validation for different status codes
+                    statusCode: {
+                        404: function(){
+                            //Your code here
                         }
                     }
                 });
-        } else {alert("Las contraseñas no coinciden.\n Dígítalas de nuevo por favor.");}
-    } else if (modalEmailGroup[0].getAttribute("class") == "form-group has-error"){
-        alert("Su correo ya está ocupado en nuestra Base de Datos. \nPor favor, escriba otro.");
+
+                /*$.post("../rest/rest.php/signup", data,
+                    function(data, status){
+                        if (status === "success"){
+                            if (data.status == 200){
+                                alert("Gracias por registrarse\n\n" +
+                                    "Datos de usuario:\n" +
+                                    "Nombre: " + data.data.nombre + "\n" +
+                                    "E-mail: " + data.data.email + "\n" +
+                                    "Contaseña: *****" +
+                                    "\n\n" +
+                                    "Llave para usuarios avanzados: " + data.data.token + "\n\n" +
+                                    "Puede proceder a iniciar sesión");
+                                modalEmailGroup[0].setAttribute("class", "form-group");
+                                modalTitle.html("<i class='fa fa-user'>&nbsp;</i>¡Aloha " + data.data.nombre + "!");
+                                modalForm[0].reset();
+                            }
+                        }
+                    });*/
+            } else {alert("Las contraseñas no coinciden.\n Dígítalas de nuevo por favor.");}
+        } else if (modalEmailGroup[0].getAttribute("class") == "form-group has-error"){
+            alert("Su correo se encuentra ocupado. \nPor favor, escriba otro.");
+        } else if(modalUsuGroup[0].getAttribute("class") == "form-group has-error"){
+            alert("Su usuario se encuentra ocupado. \nPor favor, escriba otro.");
+        } else {
+            alert("Lamentamos el inconveniente.\n\nTenemos inconsistencias en la información.\nPor favor, escriba de nuevo su e-mail y usuario.");
+        }
     } else {
-        alert("Lamentamos el inconveniente.\n\nTenemos inconsistencias en la información.\nPor favor, escriba de nuevo su e-mail.");
-    }*/
+        alert("Por favor, completa el reCaptcha.");
+    }
 });
 
 //Busca por email repetido
