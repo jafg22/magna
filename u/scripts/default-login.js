@@ -49,13 +49,7 @@ loginForm.submit(function(evt){
             con:txtPsswd.val(),
         };
     }
-    //Simple Json build
-    var datos = {
-        usu:txtUser.val(),
-        con:txtPsswd.val(),
-        per:recuerda
-    };
-    //jQuery ajax function Begin
+
     $.ajax({
         async:false,
         type:'GET',
@@ -68,8 +62,8 @@ loginForm.submit(function(evt){
                     //alert(token);
                     localStorage.removeItem("sst");
                     localStorage.setItem("sst", token);
-                    location.href = "index.php";
                 }
+                location.href = "index.php";
             }
         },
         error: function(jqXHR, status, error){
