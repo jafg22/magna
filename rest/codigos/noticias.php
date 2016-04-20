@@ -22,8 +22,8 @@
  				}else{
  					$rows['archivoA'] = true;
  				}
- 				array_push($pilaCultura,array("id" => $rows['idN'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode($rows['cuerpoN']),"image" => $rows['imageA'],
+ 				array_push($pilaCultura,array("id" => $rows['idN'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => $rows['cuerpoN'],"image" => $rows['imageA'],
  				            "adjunto" => $rows['archivoA'])); 				
  			
  			}
@@ -45,8 +45,8 @@
  				}else{
  					$rows['archivoA'] = true;
  				}
- 				array_push($pilaAcercade,array("id" => $rows['idN'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode($rows['cuerpoN']),"image" => $rows['imageA'],
+ 				array_push($pilaAcercade,array("id" => $rows['idN'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => $rows['cuerpoN'],"image" => $rows['imageA'],
  				            "adjunto" => $rows['archivoA'])); 	
  			 			  			
  			}
@@ -77,8 +77,8 @@
  				if (is_null($rows['imageA'])) {
  					$rows['imageA'] = false;
  				} 											
-				array_push($pila_acercade,array("id" => $rows['idN'],"titulo"=>utf8_encode($rows['tituloN']),
-							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode($rows['cuerpoN']),
+				array_push($pila_acercade,array("id" => $rows['idN'],"titulo"=>$rows['tituloN'],
+							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>$rows['cuerpoN'],
 							"imagen"=>$rows['imageA'],"adjunto" => array()));								
  			}
  			 			
@@ -125,8 +125,8 @@
  				if (is_null($rows['imageA'])) {
  					$rows['imageA'] = false;
  				} 											
-				array_push($pila_cultura,array("id" => $rows['idN'],"titulo"=>utf8_encode($rows['tituloN']),
-							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode($rows['cuerpoN']),
+				array_push($pila_cultura,array("id" => $rows['idN'],"titulo"=>$rows['tituloN'],
+							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>$rows['cuerpoN'],
 							"imagen"=>$rows['imageA'],"adjunto" => array()));								
  			}
  			 			
@@ -141,7 +141,7 @@
 			  	foreach ($datos2 as $key) {			  		
 			  		if ($key['idNoticia'] == $pila['id'] ) {
 			  		  array_push($pila_acercade[$i]['adjunto'],array("id"=>$key['idNoticia'],"nombre" => $key['comentario'],"mime" => $key['mime']));
-			  		  			  		 			  		  ;
+			  		  			  		 			  		  
 			  		}				
 				}
 				$i=+1;													 
