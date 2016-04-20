@@ -256,14 +256,6 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
         //alert("Sin sesion!!!");
         var token = localStorage.getItem("sst");
         if (token != 0 && token != undefined && token != null){ //Si hay token en localStorage
-            /*$.get("../rest/rest.php/restore", {token:token},
-                function(data, status){
-                    if (status === "success"){
-                        console.log("Autenticado correctamente mediante token de sesion.");
-                    } else if(status === "error") {
-                        //En caso de token vencido
-                    }
-                });*/
             var url = "../rest/rest.php/restore";
             var datos = {token:token};
             console.log("Intentando recuperar sesion");
@@ -273,11 +265,13 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                 url:url,
                 data: datos,
                 success: function(data, status, jqXHR){
-                  alert(JSON.stringify(data));
+                  alert(status);
+                    //Error unexpected token
                 },
                 error: function(jqXHR, status, error){
                     var data = $.parseJSON(jqXHR.responseText);
                     alert(JSON.stringify(data));
+                    //Fallo rest
                 },
                 statusCode: {
                     400: function(){
