@@ -253,17 +253,38 @@ function ws(open){
 /*RESTAURA SESION*/
 $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerpo de index si no hay $_SESSION['auth']
     if ($("#restoreSession").val() == "noauth"){
-        alert("Sin sesion!!!");
+        //alert("Sin sesion!!!");
         var token = localStorage.getItem("sst");
         if (token != 0 && token != undefined && token != null){ //Si hay token en localStorage
-            $.get("../rest/rest.php/restore", {token:token},
+            /*$.get("../rest/rest.php/restore", {token:token},
                 function(data, status){
                     if (status === "success"){
                         console.log("Autenticado correctamente mediante token de sesion.");
                     } else if(status === "error") {
                         //En caso de token vencido
                     }
-                });
+                });*/
+            var url = "../rest/rest.php/restore";
+            var datos = {token:token};
+            console.log("Intentando recuperar sesion");
+            $.ajax({
+                async:false,
+                type:'GET',
+                url:url,
+                data: datos,
+                success: function(data, status, jqXHR){
+                  alert(JSON.stringify(data));
+                },
+                error: function(jqXHR, status, error){
+                    var data = $.parseJSON(jqXHR.responseText);
+                    alert(JSON.stringify(data));
+                },
+                statusCode: {
+                    400: function(){
+
+                    }
+                }
+            });
         } else {
             console.log("No hay token."); //No hay token en localStorage, redireccionado a login
             //location.href = "login.php";

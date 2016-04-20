@@ -1,7 +1,3 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,6 +24,14 @@
     <title>Magna | Home</title>
 </head>
 <body>
+    <?php
+    session_start();
+    if (isset($_SESSION['user'])){
+        $sesion = true;
+    } else {
+        $sesion = false;
+        echo "<input type='hidden' id='restoreSession' value='noauth'>";
+    } ?>
     <header class="container-fluid"><!--SEMANTICO::HEADER-->
         <div class="row">
             <div id="header" class="col-xs-12"><!--HEADER VISIBLE-->
@@ -50,12 +54,7 @@
                 <!--PLAYER MAGNA-->
                 <div id="playerMagna"></div>
                 <!-- CHAT -->
-                <?php
-                if (isset($_SESSION['user'])){
-                    include_once("code/html/chat.html");
-                } else {
-                    echo "<input type='hidden' id='restoreSession' value='noauth'>";
-                } ?>
+                <?php if ($sesion){include_once("code/html/chat.html");}?>
             </aside>
         </section>
     </main>
