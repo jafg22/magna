@@ -1,10 +1,5 @@
 <?php
     session_start();
-    //BD CONEXION
-    include_once("../rest/clsConexion.inc");
-    $cnx = new mysqlConn("root", "magna", "localhost", "magna");
-    $cnx->conectar();
-    //BD CONEXION
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +39,6 @@
         <section class="row">
             <div id="menuSecciones" class="col-xs-12"><!--SECCIONES RADIO-->
                 <?php include_once("code/html/navbar.html"); ?>
-                <div id="status" class="col-xs-12"></div>
             </div>
         </section>
 
@@ -59,6 +53,8 @@
                 <?php
                 if (isset($_SESSION['user'])){
                     include_once("code/html/chat.html");
+                } else {
+                    echo "<input type='hidden' id='restoreSession' value='noauth'>";
                 } ?>
             </aside>
         </section>

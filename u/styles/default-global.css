@@ -57,6 +57,12 @@ html, main{
 /*INDEX*/
 
 /* CHAT */
+
+.occult{
+    display: none;
+    margin-top: -25px;
+}
+
 .chat_wrapper {
     position: fixed;
     top: 100%;

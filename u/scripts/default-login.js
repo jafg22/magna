@@ -143,12 +143,22 @@ modal.submit(function(evt){
                     processData:false,
                     data:data,
                     success: function(data, status, jqXHR){
-                        alert(JSON.stringify(data) + ": " + status + "\n");
-                        //Your code on success here
+                        if (data.data[0] === "Registro Exitoso"){
+                            modalForm.toggle();
+                            setTimeout(function(){
+                                if (confirm("Enhorabuena " + modalNom.val() + "\n\n¿Desea iniciar sesión ahora?")){
+                                    txtUser.val(modalUser.val());
+                                    txtPsswd.val(modalPsswd.val());
+                                    loginForm.trigger('submit');
+                                } else {
+                                    location.reload();
+                                }
+                            }, 1000);
+                        }
+
                     },
                     error: function(jqXHR, status, error){
-                        alert(status + ": " + error);
-                        //Your code on error here
+                        alert("Lo lamentamos.\n\nPor alguna razón su registro ha fallado.\nLo invitamos a intentarlo de nuevo.");
                     },
                     //Validation for different status codes
                     statusCode: {
@@ -157,25 +167,6 @@ modal.submit(function(evt){
                         }
                     }
                 });
-
-                /*$.post("../rest/rest.php/signup", data,
-                    function(data, status){
-                        if (status === "success"){
-                            if (data.status == 200){
-                                alert("Gracias por registrarse\n\n" +
-                                    "Datos de usuario:\n" +
-                                    "Nombre: " + data.data.nombre + "\n" +
-                                    "E-mail: " + data.data.email + "\n" +
-                                    "Contaseña: *****" +
-                                    "\n\n" +
-                                    "Llave para usuarios avanzados: " + data.data.token + "\n\n" +
-                                    "Puede proceder a iniciar sesión");
-                                modalEmailGroup[0].setAttribute("class", "form-group");
-                                modalTitle.html("<i class='fa fa-user'>&nbsp;</i>¡Aloha " + data.data.nombre + "!");
-                                modalForm[0].reset();
-                            }
-                        }
-                    });*/
             } else {alert("Las contraseñas no coinciden.\n Dígítalas de nuevo por favor.");}
         } else if (modalEmailGroup[0].getAttribute("class") == "form-group has-error"){
             alert("Su correo se encuentra ocupado. \nPor favor, escriba otro.");

@@ -8,10 +8,15 @@ var lateral = $("#side");
 var estado = $("#status");
 var playerMagna = $("#playerMagna");
 
+//NAV
 var home = $("#navHome");
 var diferido = $("#navDiferido");
 var cultura = $("#navCultura");
 var nosotros = $("#navNosotros");
+
+//CHAT
+var closeChat = $("#chatClose");
+var minChat = $("#chatMin");
 
 $(document).ready(function(){
     descargaCuerpo();
@@ -19,8 +24,8 @@ $(document).ready(function(){
 });
 
 function descargaCuerpo(){//FUNCIONES DUMP DATA
-    noticias.html("");
-    estado.html("<i class='fa fa-circle-thin faa-flash animated'>&nbsp;</i><small>Cargando...</small>");
+    noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
+    estado = $("#status");
     estado.slideDown(500);
     var path = window.location.search.split("/");
     //alert(path + " " + path.length);
@@ -86,7 +91,9 @@ function SCinit(){//SOUNDCLOUD
     });
 
     SC.get('/users/219630919/tracks', null, function(tracks) {//Obtiene pistas de magna radio
+        var count = 0;
         $(tracks).each(function(index, track) {
+            ++count;
             $.ajax({
                 async:true,
                 type:'GET',
@@ -109,16 +116,42 @@ function SCinit(){//SOUNDCLOUD
                     }
                 }
             });
+            if (count === 10){return;}//Solo descarga los ultimos 10 audios
         });
     });
 }//SOUNDCLOUD
 
 chat.ready(function(){//FUNCION CHAT
-    if ($(window).width() >= 992){ws();}//Implementa acciones websocket
+    if ($(window).width() >= 992){ws(true);}//Implementa acciones websocket
 });//FUNCION CHAT
 
 // FUNCIONES WEBSOCKETS INICIO
-function ws(){
+
+/*Acciones botones chat*/
+closeChat.click(function(){
+    ws(false);
+});
+
+minChat.click(function(){
+    var chatContext = $("#message_box");
+    var chatTxt = $("#textChat");
+    if (chatContext.hasClass("occult")){
+        chatContext.removeClass("occult");
+        chatTxt.removeClass("occult");
+        chat.css('margin-top', '-225px');
+    } else {
+        chatContext.addClass("occult");
+        chatTxt.addClass("occult");
+        chat.css('margin-top', '-21px');
+    }
+});
+/*Acciones botones chat*/
+function ws(open){
+    if (!open){
+        websocket.close();
+        chat.remove();
+        return;
+    }
     //Crea a new WebSocket object.
     websocket = new WebSocket(wsUri);
 
@@ -182,7 +215,6 @@ function ws(){
                         '<div class="artist">Magna Radio</div> ' +
                         '<div style="color: red; font-weight: bold" class="song">VIVO</div> ' +
                         '<div class="timeline"></div> ' +
-                        '<!--<progress class="pcast-progress" value="0"></progress>--> ' +
                         '<span class="pcast-currenttime pcast-time"></span> ' +
                         '</section> ' +
                         '<audio onended="buscaStr(true);" id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> ' +
@@ -217,3 +249,27 @@ function ws(){
         });
     }
 //FIN BUSCA STREAM
+
+/*RESTAURA SESION*/
+$("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerpo de index si no hay $_SESSION['auth']
+    if ($("#restoreSession").val() == "noauth"){
+        alert("Sin sesion!!!");
+        var token = localStorage.getItem("sst");
+        if (token != 0 && token != undefined && token != null){ //Si hay token en localStorage
+            $.get("../rest/rest.php/restore", {token:token},
+                function(data, status){
+                    if (status === "success"){
+                        console.log("Autenticado correctamente mediante token de sesion.");
+                    } else if(status === "error") {
+                        //En caso de token vencido
+                    }
+                });
+        } else {
+            console.log("No hay token."); //No hay token en localStorage, redireccionado a login
+            //location.href = "login.php";
+        }
+    } else {
+        //Hay una $_SESSION['auth']
+    }
+});
+/*RESTARUA SESION*/
