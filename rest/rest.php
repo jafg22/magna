@@ -4,8 +4,8 @@
 	include_once('pdoClassConex.inc');
 	include_once('codigos/isAjax.php');
 
-	$conex = new mysqlConn("root", "magna", "localhost", "magna");
-	$conexPDO = new pdoConexion("localhost","mysql","root","magna","magna");	    
+	$conex = new mysqlConn("root", "magna", "localhost", "magna2");
+	$conexPDO = new pdoConexion("localhost","mysql","root","magna","magna2");	    
 
 	header("Content-Type:application/json");
 	header("Accept:application/json");
@@ -28,6 +28,8 @@
                 		include_once("codigos/buscaDupli.php");
                 	}else if ($request[0] == 'noticias') {
                 		include_once("codigos/noticias.php");
+                	}else if ($request[0] == 'noticiaunica') {                		
+                		include_once("codigos/noticiaUnica.php");
                 	}
 				}					
 				break;
