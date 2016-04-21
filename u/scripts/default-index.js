@@ -1,6 +1,6 @@
 //GLOBALES
-var wsUri = "ws://localhost:1024/magna/u/code/wsserver/server.php";
-
+var wsUri = "ws://127.0.0.1:845/magna/u/code/wsserver/server.php";
+var icecastSrv = "http://127.0.0.1:8000/";
 //DOM
 var chat = $("#chatF");
 var noticias = $("#noticias");
@@ -97,7 +97,7 @@ function SCinit(){//SOUNDCLOUD
             $.ajax({
                 async:true,
                 type:'GET',
-                url:'http://soundcloud.com/oembed',
+                url:'https://soundcloud.com/oembed',
                 data: {url:track.permalink_url, format:'json', maxheight:230},
                 success: function(data, status, jqXHR){
                     estado.slideUp(500);
@@ -205,7 +205,7 @@ function ws(open){
 
 //INICIO BUSCA STREAM
     function buscaStr(){
-        $.get("http://localhost:8000/", function(data, status){
+        $.get(icecastSrv, function(data, status){
             data = new XMLSerializer().serializeToString(data);
             if (data.includes('/magna')){
                 //alert("magna mounted");

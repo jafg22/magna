@@ -18,8 +18,8 @@
 
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
-    <script src="//connect.soundcloud.com/sdk.js"></script>
-    <script src="http://w.soundcloud.com/player/api.js"></script>
+    <script src="https://connect.soundcloud.com/sdk.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
     <title>Magna | Home</title>
 </head>
