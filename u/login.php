@@ -47,7 +47,6 @@
             <article class="row">
                 <div class="col-md-5 col-lg-6 hidden-xs"><!-- ASIDE LEFT::INFO -->
                     <h1 style="padding-bottom: 25pt; padding-top: 15pt" class="loginSide">Aquí puedes acceder a:</h1>
-                    <br>
                     <div>
                         <h1 class="loginSide"><i style="color: grey" class="fa fa-newspaper-o faa-pulse animated-hover">&nbsp;</i>Notas de actualidad</h1>
                     </div>

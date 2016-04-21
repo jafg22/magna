@@ -1,0 +1,51 @@
+article {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 3px 2px 1px lightgray;
+    margin-bottom: 12pt;
+    margin-top: 12pt;
+}
+
+article:hover {
+    transition: all 500ms;
+    background-color: #fafafa;
+    box-shadow: 2px 3px 3px 2px lightgray;
+}
+
+article div{
+    padding: 4pt;
+}
+
+article div small{/*FECHA*/
+    text-align: right;
+}
+
+article div .tituNoti{/*TITULO NOTICIA*/
+    padding-bottom: 2pt;
+    border-bottom: double 1px lightgray;
+    font-family: cinzel_decorativeregular;
+    cursor: pointer;
+}
+
+article div p{/*CUERPO*/
+    font-family: 'Lora', sans-serif;
+    text-indent: 7pt;
+    padding-bottom: 5pt;
+}
+
+article div p::first-letter {
+    font-size: 200%;
+    font-family: 'Playfair Display', serif;
+}
+
+article div i{/*INDICA SI HAY ADJUNTOS*/
+    padding-bottom: 5pt;
+    text-align: right;
+}
+
+article div a{/*INDICA SI HAY ADJUNTOS*/
+    padding-bottom: 5pt;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    text-align: right;
+}

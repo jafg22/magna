@@ -1,5 +1,8 @@
 /*GLOBALS*/
-
+@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400italic&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Crimson+Text);
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville&subset=latin,latin-ext);
 /*GLOBALS*/
 
 /*INDEX*/
@@ -7,7 +10,7 @@
 html, main{
     width: 100%;
     height: 100%;
-}
+    font-family: 'Libre Baskerville', serif;}
 
 #header{
     font-family: cinzel_decorativebold;
@@ -26,6 +29,7 @@ html, main{
 
 #header h1{
     font-size: 42px;
+    cursor: pointer;
 }
 
 #nav{

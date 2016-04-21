@@ -23,16 +23,16 @@ $(document).ready(function(){
 });
 
 function dumpData(){//FUNCIONES DUMP DATA
-    noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
-    estado = $("#status");
-    estado.slideDown(500);
+    //noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
+    //estado = $("#status");
+    //estado.slideDown(500);
     var path = window.location.search.split("/");
     //alert(path + " " + path.length);
     switch (path.length){
         case 1:
             if (path[0] === ""){
                 //alert("Soy home!!!");
-                estado.slideUp(500);
+                //estado.slideUp(500);
             }
             break;
         case 2:
@@ -328,3 +328,9 @@ function borraToken(){
     }
 }
 //BORRA TOKEN
+
+
+//AL HACER CLICK EN HEADER
+$("header h1").click(function(){
+    location.href = "index.php";
+});
