@@ -28,7 +28,7 @@ $(document).ready(function(){
         var data = {tok:token};
         data = JSON.stringify(data);
         $.ajax({
-            async:false,
+            async:true,
             type:'POST',
             url:url,
             contentType:'application/json',
@@ -37,7 +37,6 @@ $(document).ready(function(){
             data:data,
             success: function(data, status, jqXHR){
                 //alert(JSON.stringify(data) + ": " + status + "\n");
-                alert("...");
                 //Your code on success here
             },
             error: function(jqXHR, status, error){
@@ -77,7 +76,7 @@ loginForm.submit(function(evt){
     }
 
     $.ajax({
-        async:false,
+        async:true,
         type:'GET',
         url:url,
         data: datos,
@@ -90,7 +89,7 @@ loginForm.submit(function(evt){
                     localStorage.setItem("sst", token);
                 }
                 loginInfo.html("<i style='color: mediumseagreen' class='fa fa-hand-lizard-o faa-shake animated'>&nbsp;</i>Hola " + data.data.NomC);//Cobra taka taka :v
-                setTimeout(function(){location.href = "index.php";}, 1000);
+                setTimeout(function(){location.href = "index.php";}, 500);
             }
         },
         error: function(jqXHR, status, error){

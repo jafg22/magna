@@ -19,11 +19,10 @@ var closeChat = $("#chatClose");
 var minChat = $("#chatMin");
 
 $(document).ready(function(){
-    descargaCuerpo();
-    buscaStr();
+
 });
 
-function descargaCuerpo(){//FUNCIONES DUMP DATA
+function dumpData(){//FUNCIONES DUMP DATA
     noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
     estado = $("#status");
     estado.slideDown(500);
@@ -67,22 +66,22 @@ function descargaCuerpo(){//FUNCIONES DUMP DATA
     home.on("click", function(){//ACCIONES NAVBAR
         window.history.pushState({"pageTitle":"Magna | Home"}, "Magna | Home", "index.php");
         document.title = "Magna | Home";
-        descargaCuerpo();
+        dumpData();
     });
     diferido.on("click", function(){
         window.history.pushState({"pageTitle":"Magna | Diferido"}, "Magna | Home", "index.php?/section/diferido");
         document.title = "Magna | Diferido";
-        descargaCuerpo();
+        dumpData();
     });
     cultura.on("click", function(){
         window.history.pushState({"pageTitle":"Magna | Cultura"}, "Magna | Home", "index.php?/section/cultura");
         document.title = "Magna | Cultura";
-        descargaCuerpo();
+        dumpData();
     });
     nosotros.on("click", function(){
         window.history.pushState({"pageTitle":"Magna | Acerca de"}, "Magna | Home", "index.php?/section/nosotros");
         document.title = "Magna | Acerca de";
-        descargaCuerpo();
+        dumpData();
     });//ACCIONES NAVBAR
 
 function SCinit(){//SOUNDCLOUD
@@ -101,7 +100,7 @@ function SCinit(){//SOUNDCLOUD
                 data: {url:track.permalink_url, format:'json', maxheight:230},
                 success: function(data, status, jqXHR){
                     estado.slideUp(500);
-                    noticias.append("<h1 class='h1 tituSC'>"+ track.title +"</h1>");
+                    noticias.append("<h1 class='tituSC'>"+ track.title +"</h1>");
                     noticias.append("<div>"+ data.html +"</div>");
                     noticias.append("<hr><tr><hr>");
                 },
@@ -126,7 +125,6 @@ chat.ready(function(){//FUNCION CHAT
 });//FUNCION CHAT
 
 // FUNCIONES WEBSOCKETS INICIO
-
 /*Acciones botones chat*/
 closeChat.click(function(){
     ws(false);
@@ -253,7 +251,6 @@ function ws(open){
 /*RESTAURA SESION*/
 $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerpo de index si no hay $_SESSION['auth']
     if ($("#restoreSession").val() == "noauth"){
-        alert("Sin sesion!!!");
         var token = localStorage.getItem("sst");
         if (token != 0 && token != undefined && token != null){ //Si hay token en localStorage
             var url = "../rest/rest.php/restore";
@@ -267,12 +264,18 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                 success: function(data, status, jqXHR){
                     console.log("Sesion iniciada correctamente con token");
                     //alert(JSON.stringify(data));
+                    if (data.data.info == "Token vivo"){
+                        location.reload();
+                    }
                 },
                 error: function(jqXHR, status, error){
-                    console.log("Sesion expirada");
-                    //var data = $.parseJSON(jqXHR.responseText);
-                    //alert(JSON.stringify(data));
-                    //Fallo rest
+                    var data = $.parseJSON(jqXHR.responseText);
+                    alert(data.data[0]);
+                    if (data.data[0] == "Token vencido"){
+                        console.log("Sesion expirada");
+                        borraToken();
+                        dumpData();
+                    }
                 },
                 statusCode: {
                     400: function(){
@@ -281,10 +284,47 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                 }
             });
         } else {
-            console.log("No hay token."); //No hay token en localStorage, redireccionado a login
+            console.log("No hay token."); //No hay token en localStorage.
+            dumpData();
         }
     } else {
-        console.log("No hay necesidad de usar token. Sesión actualmente en uso.");
+        console.log("Sesión registrada.");
+        dumpData();
     }
 });
-/*RESTARUA SESION*/
+/*RESTAURA SESION*/
+
+//BORRA TOKEN
+function borraToken(){
+    var token = localStorage.getItem("sst");
+    if (token != 0 && token != undefined && token != null){
+        var url = "../rest/rest.php/bortoken";
+        var data = {tok:token};
+        data = JSON.stringify(data);
+        $.ajax({
+            async:false,
+            type:'POST',
+            url:url,
+            contentType:'application/json',
+            cache:false,
+            processData:false,
+            data:data,
+            success: function(data, status, jqXHR){
+                //alert(JSON.stringify(data) + ": " + status + "\n");
+                //Your code on success here
+            },
+            error: function(jqXHR, status, error){
+                //alert(status + ": " + error);
+                //Your code on error here
+            },
+            //Validation for different status codes
+            statusCode: {
+                404: function(){
+                    //Your code here
+                }
+            }
+        });
+        localStorage.removeItem("sst");
+    }
+}
+//BORRA TOKEN

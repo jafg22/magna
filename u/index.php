@@ -12,8 +12,8 @@
     <link href="third-party/fontAwesome/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
-    <link href="styles/fuentes/cinzel/stylesheet.css">
     <link href="styles/fuentes/alex-br/stylesheet.css" rel="stylesheet">
+    <link href="styles/fuentes/cinzel/stylesheet.css">
     <link href="styles/magna-player.css" rel="stylesheet">
 
     <!-- SCRIPTS -->

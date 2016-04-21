@@ -6,8 +6,8 @@
 
      $resul = $conex->spOut();
 
-     if($resul[0]['@est'] == 1){     	
-        deliver_response(400, "OK", array('Token vencido'));
+     if($resul[0]['@est'] == 0){
+        deliver_response(400, "Error", array('Token vencido'));
      }else{
 
      	list($user,$correo,$nomC,$isAdmin) = explode(";", $resul[0]['@info']);
