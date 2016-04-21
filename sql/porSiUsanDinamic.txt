@@ -1,0 +1,57 @@
+/*para actualizar noticias*/
+
+DROP TRIGGER IF EXISTS IdinamicN;
+CREATE TRIGGER IdinamicN 
+AFTER INSERT ON muroNoticias
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
+
+
+
+DROP TRIGGER IF EXISTS UdinamicN;
+CREATE TRIGGER UdinamicN 
+AFTER UPDATE ON muroNoticias
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
+
+
+DROP TRIGGER IF EXISTS DdinamicN;
+CREATE TRIGGER DdinamicN 
+AFTER DELETE ON muroNoticias
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
+
+
+
+/*---------------------para adjuntos-------------------------*/
+
+DROP TRIGGER IF EXISTS IdinamicA;
+CREATE TRIGGER IdinamicA 
+AFTER INSERT ON adjuntosN
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
+
+DROP TRIGGER IF EXISTS UdinamicA;
+CREATE TRIGGER UdinamicA 
+AFTER UPDATE ON adjuntosN
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
+
+
+DROP TRIGGER IF EXISTS DdinamicA;
+CREATE TRIGGER DdinamicA 
+AFTER DELETE ON adjuntosN
+FOR EACH ROW 
+BEGIN 
+call sp_home(1);
+END; 
