@@ -253,7 +253,7 @@ function ws(open){
 /*RESTAURA SESION*/
 $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerpo de index si no hay $_SESSION['auth']
     if ($("#restoreSession").val() == "noauth"){
-        //alert("Sin sesion!!!");
+        alert("Sin sesion!!!");
         var token = localStorage.getItem("sst");
         if (token != 0 && token != undefined && token != null){ //Si hay token en localStorage
             var url = "../rest/rest.php/restore";
@@ -265,12 +265,13 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                 url:url,
                 data: datos,
                 success: function(data, status, jqXHR){
-                  alert(status);
-                    //Error unexpected token
+                    console.log("Sesion iniciada correctamente con token");
+                    //alert(JSON.stringify(data));
                 },
                 error: function(jqXHR, status, error){
-                    var data = $.parseJSON(jqXHR.responseText);
-                    alert(JSON.stringify(data));
+                    console.log("Sesion expirada");
+                    //var data = $.parseJSON(jqXHR.responseText);
+                    //alert(JSON.stringify(data));
                     //Fallo rest
                 },
                 statusCode: {
@@ -281,10 +282,9 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
             });
         } else {
             console.log("No hay token."); //No hay token en localStorage, redireccionado a login
-            //location.href = "login.php";
         }
     } else {
-        //Hay una $_SESSION['auth']
+        console.log("No hay necesidad de usar token. Sesión actualmente en uso.");
     }
 });
 /*RESTARUA SESION*/
