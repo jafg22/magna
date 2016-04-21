@@ -95,6 +95,7 @@ loginForm.submit(function(evt){
         },
         error: function(jqXHR, status, error){
             var data = $.parseJSON(jqXHR.responseText);
+            //alert(JSON.stringify(data));
             if (data.data[0] == 2){
                 loginInfo.html("<i style='color: red' class='fa fa-warning faa-flash animated'>&nbsp;</i>Contraseña errónea");
                 txtPsswd.val("");
@@ -105,6 +106,9 @@ loginForm.submit(function(evt){
                 txtUser.val("");
                 txtUser.focus();
                 setTimeout(function(){loginInfo.html("Inicio de sesión");}, 3000);
+            } else if (data.data[0] == 3){
+                alert("NO PERMITIDO.\n\nUsuario en período de baneo.");
+                location.href = "index.php";
             }
             console.log("Error en login REST");
         },
