@@ -6,7 +6,7 @@
 
      $resul = $conex->spOut();
 
-     if($resul[0]['@est'] == 0){     	
+     if($resul[0]['@est'] == 1){     	
         deliver_response(400, "OK", array('Token vencido'));
      }else{
 
