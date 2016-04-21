@@ -98,13 +98,11 @@ loginForm.submit(function(evt){
             //alert(JSON.stringify(data));
             if (data.data[0] == 2){
                 loginInfo.html("<i style='color: red' class='fa fa-warning faa-flash animated'>&nbsp;</i>Contraseña errónea");
-                txtPsswd.val("");
-                txtPsswd.focus();
+                txtPsswd.focus().select();
                 setTimeout(function(){loginInfo.html("Inicio de sesión");}, 3000);
             } else if (data.data[0] == 1){
                 loginInfo.html("<i style='color: red' class='fa fa-warning faa-flash animated'>&nbsp;</i>Este usuario no existe");
-                txtUser.val("");
-                txtUser.focus();
+                txtUser.focus().select();
                 setTimeout(function(){loginInfo.html("Inicio de sesión");}, 3000);
             } else if (data.data[0] == 3){
                 alert("NO PERMITIDO.\n\nUsuario en período de baneo.");

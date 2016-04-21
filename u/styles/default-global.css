@@ -52,7 +52,7 @@ html, main{
 
 #noticias .tituSC{/*TITULOS SOUNDCLOUD*/
     text-align: center;
-    font-family: bitterbold;
+    font-family: bitterbold, alex_brushregular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 /*INDEX*/
 
@@ -134,8 +134,8 @@ footer{
 }
 
 .loginSide{
-    font-family: cinzel_decorativeregular;
-    text-align: justify;
+    font-family: cinzel_decorativeregular/*, Helvetica, Arial, Times, sans-serif*/;
+    text-align: left;
 }
 
 /*LOGIN*/

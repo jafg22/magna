@@ -26,6 +26,7 @@
     <link href="third-party/font-awesome-animation/dist/font-awesome-animation.min.css" type="text/css" rel="stylesheet">
     <link href="styles/fuentes/alex-br/stylesheet.css" rel="stylesheet">
     <link href="styles/fuentes/bitter/stylesheet.css">
+    <link href="styles/fuentes/cinzel/stylesheet.css">
     <!-- SCRIPTS -->
     <script src="third-party/jQuery/jquery.min.js"></script>
     <script src="third-party/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
@@ -56,9 +57,8 @@
                     </div>
                     <hr>
                     <div>
-                        <h1 class="loginSide"><i style="color: orangered" class="fa fa-soundcloud faa-horizontal animated-hover">&nbsp;</i>Podcasts alojados en Souncloud</h1>
+                        <h1 class="loginSide"><i style="color: orangered" class="fa fa-soundcloud faa-horizontal animated-hover">&nbsp;</i>Podcasts alojados en Soundcloud</h1>
                     </div>
-                    <hr><br>
                 </div>
                 <?php include_once("code/html/signin-login.html"); ?>
             </article>
