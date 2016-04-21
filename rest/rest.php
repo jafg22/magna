@@ -4,8 +4,8 @@
 	include_once('pdoClassConex.inc');
 	include_once('codigos/isAjax.php');
 
-	$conex = new mysqlConn("root", "magna", "localhost", "magna2");
-	$conexPDO = new pdoConexion("localhost","mysql","root","magna","magna2");	    
+	$conex = new mysqlConn("root", "magna", "localhost", "magna");
+	$conexPDO = new pdoConexion("localhost","mysql","root","magna","magna");	    
 
 	header("Content-Type:application/json");
 	header("Accept:application/json");
