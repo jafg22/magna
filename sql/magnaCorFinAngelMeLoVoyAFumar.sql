@@ -337,7 +337,7 @@ select date(now()) into @actual;
 
 IF @caduca >= @actual THEN
 SET info = 1;
-update sessionToken set caducidad = DATE_ADD( @actual, INTERVAL 7 DAY);
+update sessionToken set caducidad = DATE_ADD( @actual, INTERVAL 7 DAY) where token = tok;
 ELSE
 SET info = 0;
 END IF;
