@@ -35,8 +35,24 @@
     } ?>
     <header class="container-fluid"><!--SEMANTICO::HEADER-->
         <div class="row">
-            <div id="header" class="col-xs-12"><!--HEADER VISIBLE-->
-                <h1 class="h1">Magna</h1><small class="slogan">Más que un proyecto final.-</small>
+            <div id="header" class="col-xs-12 container"><!--HEADER VISIBLE-->
+                <h1 id="titulo" class="col-xs-12">Magna</h1><small class="slogan col-sm-10">Más que un proyecto final.-</small>
+                <div class="col-sm-2">
+                    <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></p>
+                    <ul class="dropdown-menu">
+                        <?php
+                            if ($sesion){
+                                echo "<li><a id='user'><i class='fa fa-user'>&nbsp;</i>".explode(" ", $_SESSION['NomC'])[0]."</a></li>";
+                                echo "<li role='separator' class='divider'></li>";
+                                echo "<li><a id='drlogout'><i class='fa fa-sign-out'>&nbsp;</i>Cerrar sesión</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'><i class='fa fa-sign-in'>&nbsp;</i>Iniciar sesión/Registrarse</a></li>";
+                            }
+                        ?>
+                        <!--<li role="separator" class="divider"></li>
+                        <li><a>One more separated link</a></li>-->
+                    </ul>
+                </div>
             </div>
         </div>
     </header>

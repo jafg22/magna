@@ -1,12 +1,18 @@
 //GLOBALES
-var wsUri = "ws://127.0.0.1:845/magna/u/code/wsserver/server.php";
+var wsUri = "ws://localhost:845/magna/u/code/wsserver/server.php";
 var icecastSrv = "http://127.0.0.1:8000/";
+var colores = ['royalblue', 'indianred', 'yellow', 'pink', 'orange', 'lightgray'];
+
 //DOM
 var chat = $("#chatF");
 var noticias = $("#noticias");
 var lateral = $("#side");
 var estado = $("#status");
 var playerMagna = $("#playerMagna");
+
+//Dropdown
+var logout = $("#drlogout");
+var user = $("#user").html();
 
 //NAV
 var home = $("#navHome");
@@ -103,7 +109,7 @@ function dumpData(){//FUNCIONES DUMP DATA
         document.title = "Magna | Nota";
         dumpData();
     });
-$(document).on("click", "article div a", function(){
+$(document).on("click", "article div .a", function(){
     descarga($(this).attr('id'), $(this).html());
 });//ACCIONES NAVBAR Y NOTICIA
 
@@ -179,15 +185,22 @@ function ws(open){
     }
     //Crea a new WebSocket object.
     websocket = new WebSocket(wsUri);
+    var color = colores[Math.floor(Math.random() * colores.length)];
 
     websocket.onopen = function(ev) { //Conexion abierta
         $('#message_box').append("<div class='system_msg'><i class='fa fa-server'>&nbsp;</i>Conectado.</div>"); //notify user
+        /*var hist = sessionStorage.getItem("historial");
+        if (hist != 0 && hist != undefined && hist != null){
+            //hist = JSON.parse(hist);
+            $(hist).each(function(index, msg){
+                $('#message_box').append("<div><span class='user_name' style='color:" +msg.ucolor+"'>"+msg.uname+"</span> : <span class='user_message'>"+msg.umsg+"</span></div>");
+            });
+        }*/
     };
-
     $('#message').on("keyup", function(evt){ //use clicks message send button
         if (evt.which == 13){
             var mymessage = $('#message').val(); //get message text
-            var myname = "Sin definir"; //get user name
+            var myname = user; //get user name
 
             if(mymessage == ""){ //emtpy message?
                 alert("Escriba un mensaje.");
@@ -198,7 +211,7 @@ function ws(open){
             var msg = {
                 message: mymessage,
                 name: myname,
-                color : 'black' //Por el momento
+                color : color //Por el momento
             };
             //convert and send data to server
             websocket.send(JSON.stringify(msg));
@@ -214,10 +227,13 @@ function ws(open){
         var ucolor = msg.color; //color
 
         if(type == 'usermsg') {
-            $('#message_box').append("<div><span class='user_name' style='color:"+ucolor+"'>"+uname+"</span> : <span class='user_message'>"+umsg+"</span></div>");
+            if (uname != null && umsg != null){
+                $('#message_box').append("<div><span class='user_name' style='color:"+ucolor+"'>"+uname+"</span> : <span class='user_message'>"+umsg+"</span></div>");
+                sessionStorage.setItem("historial", JSON.stringify(ev.data));
+            }
         }
         if(type == 'system') {
-            $('#message_box').append("<div class='system_msg'><i class='fa fa-server'>&nbsp;</i>"+umsg+"</div>");
+            //$('#message_box').append("<div class='system_msg'><i class='fa fa-server'>&nbsp;</i>"+umsg+"</div>");
         }
 
         $("#message_box").animate({ scrollTop: $('#message_box').prop("scrollHeight")}, 200);
@@ -322,8 +338,9 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
 /*RESTAURA SESION*/
 
 //BORRA TOKEN
-function borraToken(){
+function borraToken(logout){
     var token = localStorage.getItem("sst");
+    localStorage.removeItem("sst");
     if (token != 0 && token != undefined && token != null){
         var url = "../rest/rest.php/bortoken";
         var data = {tok:token};
@@ -351,7 +368,9 @@ function borraToken(){
                 }
             }
         });
-        localStorage.removeItem("sst");
+        if (logout){
+            location.href = "code/php/exit.php"
+        }
     }
 }
 //BORRA TOKEN
@@ -466,7 +485,7 @@ function noticiaunica(id){
                 if(data.data.adjuntos != "false"){
                     adj = '<div class="row" id="adjuntos">';
                     $(data.data.adjuntos).each(function(id, adjunto){
-                        adj = adj.concat('<i class="fa fa-clipboard">&nbsp;</i><a id="' + adjunto.id + '">' + adjunto.nombre + '</a>&nbsp;');
+                        adj = adj.concat('<i class="fa fa-clipboard">&nbsp;</i><a class="a" id="' + adjunto.id + '">' + adjunto.nombre + '</a>&nbsp;');
                     });
                     adj = adj.concat('</div>');
                 }
@@ -561,6 +580,11 @@ function descarga(id, nom){
 /*FUNCION PARA DESCARGAR ADJUNTO*/
 
 //AL HACER CLICK EN HEADER
-$("header h1").click(function(){
+$("header #titulo").click(function(){
     location.href = "index.php";
+});
+
+//AL HACER CLICK EN CERRAR SESION
+logout.click(function(){
+    borraToken(true);
 });
