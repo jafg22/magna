@@ -32,6 +32,8 @@
                 		include_once("codigos/noticiaUnica.php");
                 	}else if ($request[0] == 'getfile') {                		
                 		include_once("codigos/descargas.php");
+                	}else if ($request[0] == 'inicidencia') {                		
+                		include_once("codigos/incidencia.php");
                 	}
 				}					
 				break;
