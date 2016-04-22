@@ -22,7 +22,7 @@
  			   					"cuerpo"=>utf8_encode($row['cuerpoN']),"imagen"=>$row['image'],"adjuntos" => "");
 
  			}           
- 			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosn WHERE idNoticia = ".$noticia['id'];
+ 			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosN WHERE idNoticia = ".$noticia['id'];
  			$datosAdj = $conexPDO->executeSelect();
  			
  			 if (empty($datosAdj)) { 			 	
@@ -63,7 +63,7 @@
 
 
  			}           
- 			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosn WHERE idNoticia = ".$noticia['id'];
+ 			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosN WHERE idNoticia = ".$noticia['id'];
  			$datosAdj = $conexPDO->executeSelect();
  			
  			 if (empty($datosAdj)) { 			 	

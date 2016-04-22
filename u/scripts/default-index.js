@@ -22,16 +22,21 @@ $(document).ready(function(){
 
 });
 
+function init(){
+    dumpData();
+    buscaStr();
+}
+
 function dumpData(){//FUNCIONES DUMP DATA
-    //noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
-    //estado = $("#status");
-    //estado.slideDown(500);
+    noticias.html('<div style="display: none;" id="status" class="col-xs-12"><i class="fa fa-circle-thin faa-flash animated">&nbsp;</i><small>Cargando...</small></div>');
+    estado = $("#status");
+    estado.slideDown(500);
     var path = window.location.search.split("/");
     //alert(path + " " + path.length);
     switch (path.length){
         case 1:
             if (path[0] === ""){
-                //alert("Soy home!!!");
+                master("home", 1);
                 //estado.slideUp(500);
             }
             break;
@@ -42,17 +47,16 @@ function dumpData(){//FUNCIONES DUMP DATA
             if (path[1] === "section"){
                 switch (path[2]){
                     case "home":
-                        alert("Quiero home");
+                        master("home", 1);
                         break;
                     case "diferido":
-                        //alert("Quiero diferido");
-                        SCinit();
+                        SCinit(10);
                         break;
                     case "cultura":
-                        alert("Quiero cultura");
+                        master("cultura", 1);
                         break;
                     case "nosotros":
-                        alert("Quiero acerca de");
+                        master("acerca de", 1);
                         break;
                 }
             }
@@ -84,14 +88,16 @@ function dumpData(){//FUNCIONES DUMP DATA
         dumpData();
     });//ACCIONES NAVBAR
 
-function SCinit(){//SOUNDCLOUD
+function SCinit(frames){//SOUNDCLOUD
     SC.initialize({
         client_id: 'a23f4aab06d0713719783b97bfe94794'
     });
 
     SC.get('/users/219630919/tracks', null, function(tracks) {//Obtiene pistas de magna radio
         var count = 0;
+        noticias.append("<h2 class='aviso'>Últimos podcasts</h2>");
         $(tracks).each(function(index, track) {
+            if (count === frames){return;}//Solo descarga los ultimos 10 audios
             ++count;
             $.ajax({
                 async:true,
@@ -100,7 +106,6 @@ function SCinit(){//SOUNDCLOUD
                 data: {url:track.permalink_url, format:'json', maxheight:230},
                 success: function(data, status, jqXHR){
                     estado.slideUp(500);
-                    noticias.append("<h1 class='tituSC'>"+ track.title +"</h1>");
                     noticias.append("<div>"+ data.html +"</div>");
                     noticias.append("<hr><tr><hr>");
                 },
@@ -115,7 +120,6 @@ function SCinit(){//SOUNDCLOUD
                     }
                 }
             });
-            if (count === 10){return;}//Solo descarga los ultimos 10 audios
         });
     });
 }//SOUNDCLOUD
@@ -274,7 +278,7 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                     if (data.data[0] == "Token vencido"){
                         console.log("Sesion expirada");
                         borraToken();
-                        dumpData();
+                        init();
                     }
                 },
                 statusCode: {
@@ -285,11 +289,11 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
             });
         } else {
             console.log("No hay token."); //No hay token en localStorage.
-            dumpData();
+            init();
         }
     } else {
         console.log("Sesión registrada.");
-        dumpData();
+        init();
     }
 });
 /*RESTAURA SESION*/
@@ -328,6 +332,48 @@ function borraToken(){
     }
 }
 //BORRA TOKEN
+
+/*FUNCION DE DESCARGA DE DATOS*/
+function master(action, page){
+
+
+    url = "../rest/rest.php/noticias";
+    data = {
+        seccion:action,
+        pag:page
+    };
+    $.ajax({
+        async:true,
+        type:'GET',
+        url:url,
+        data: data,
+        success: function(data, status, jqXHR){
+            estado.slideUp(500);
+            if (action === "home"){
+                SCinit(1);
+            }
+            //alert(JSON.stringify(data) + " " + status);
+            $(data.data.cultura).each(function(data, seccion){
+                alert(JSON.stringify(seccion) + " CULTURA");
+            });
+            $(data.data.acercaDe).each(function(data, seccion){
+                alert(JSON.stringify(seccion)  + " ACERCADE");
+            });
+        },
+        error: function(jqXHR, status, error){
+            var data = $.parseJSON(jqXHR.responseText);
+            alert(JSON.stringify(data) + ": " + error);
+            //Your code on error here
+        },
+        //Validation for different status codes
+        statusCode: {
+            404: function(){
+                //Your code here
+            }
+        }
+    });
+}
+/*FUNCION DE DESCARGA DE DATOS*/
 
 
 //AL HACER CLICK EN HEADER

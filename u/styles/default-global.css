@@ -54,9 +54,16 @@ html, main{
     text-align: center;
 }
 
-.tituSC{/*TITULOS SOUNDCLOUD*/
+.aviso{/*TITULOS SOUNDCLOUD*/
+    margin-bottom: 8pt;
+    padding-top: 6pt;
+    padding-bottom: 6pt;
+
     text-align: center;
-    font-family: cinzel_decorativebold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    background: linear-gradient(to right, royalblue 2%, orangered 4%, #fafafa 7%);;
+    box-shadow: 2px 3px 2px 1px lightgray;
+    border-radius: 8px;
 }
 /*INDEX*/
 
