@@ -49,3 +49,9 @@ article div a{/*INDICA SI HAY ADJUNTOS*/
     padding-right: 5pt;
     text-align: right;
 }
+
+article div img{
+    max-height: 400px;
+    max-width: 100%;
+    border-radius: 6px;
+}
