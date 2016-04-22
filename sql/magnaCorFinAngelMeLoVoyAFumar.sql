@@ -530,3 +530,8 @@ DELETE FROM sessionToken where token = tok;
 END;
 
 
+ALTER TABLE adjuntosN
+  DROP PRIMARY KEY,
+   ADD PRIMARY KEY(
+     nomA,
+     idNoticia);
