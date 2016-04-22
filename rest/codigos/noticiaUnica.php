@@ -19,7 +19,7 @@
  					$row['image'] = true;
  				} 				 	
  			   $noticia = array("id"=>$row['idNoticia'],"titulo"=>utf8_encode($row['tituloN']),"fecha"=>$row['fechaN'],
- 			   					"cuerpo"=>utf8_encode(substr($row['cuerpoN'],0,-70))."...","imagen"=>$row['image'],"adjuntos" => "");
+ 			   					"cuerpo"=>utf8_encode($row['cuerpoN'],0,-70),"imagen"=>$row['image'],"adjuntos" => "");
 
  			}           
  			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosn WHERE idNoticia = ".$noticia['id'];
