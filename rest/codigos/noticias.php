@@ -72,8 +72,8 @@
 
  			foreach ($datos as $rows){
  															
-				array_push($pila_acercade,array("id" => $rows['idNoticia'],"titulo"=>utf8_encode($rows['tituloN']),
-							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode(substr($rows['cuerpoN'],0,-70)."..."),
+				array_push($pila_acercade,array("id" => $rows['idNoticia'],"titulo"=>$rows['tituloN'],
+							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>substr($rows['cuerpoN'],0,-70)."...",
 							"adjunto" => array()));								
  			}
  			 			
@@ -117,8 +117,8 @@
 
  			foreach ($datos as $rows){
  															
-				array_push($pila_cultura,array("id" => $rows['idNoticia'],"titulo"=>utf8_encode($rows['tituloN']),
-							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode(substr($rows['cuerpoN'],0,-70)."..."),
+				array_push($pila_cultura,array("id" => $rows['idNoticia'],"titulo"=>$rows['tituloN'],
+							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>substr($rows['cuerpoN'],0,-70)."...",
 							"adjunto" => array()));								
  			}
  			 			

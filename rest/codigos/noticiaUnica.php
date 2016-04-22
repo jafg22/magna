@@ -18,8 +18,8 @@
  				}else{
  					$row['image'] = base64_encode($row['image']);
  				} 				 	
- 			   $noticia = array("id"=>$row['idNoticia'],"titulo"=>utf8_encode($row['tituloN']),"fecha"=>$row['fechaN'],
- 			   					"autor"=>$row['usuarioN'],"cuerpo"=>utf8_encode($row['cuerpoN']),"imagen"=>$row['image'],"adjuntos" => "");
+ 			   $noticia = array("id"=>$row['idNoticia'],"titulo"=>$row['tituloN'],"fecha"=>$row['fechaN'],
+ 			   					"autor"=>$row['usuarioN'],"cuerpo"=>$row['cuerpoN'],"imagen"=>$row['image'],"adjuntos" => "");
 
  			}           
  			$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosN WHERE idNoticia = ".$noticia['id'];
@@ -58,8 +58,8 @@
  				}else{
  					$row['image'] = base64_encode($row['image']);
  				} 			 	
- 			   $noticia = array("id"=>$row['idNoticia'],"titulo"=>utf8_encode($row['tituloN']),"fecha"=>$row['fechaN'],
- 			   					"autor"=>$row['usuarioN'],"cuerpo"=>utf8_encode($row['cuerpoN']),"imagen"=>$row['image'],"adjuntos" => "");
+ 			   $noticia = array("id"=>$row['idNoticia'],"titulo"=>$row['tituloN'],"fecha"=>$row['fechaN'],
+ 			   					"autor"=>$row['usuarioN'],"cuerpo"=>$row['cuerpoN'],"imagen"=>$row['image'],"adjuntos" => "");
 
 
  			}           
