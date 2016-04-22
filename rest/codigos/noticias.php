@@ -15,12 +15,12 @@
  					$conexPDO->Sqlquery = "SELECT * FROM adjuntosN WHERE idNoticia = ".$rows['idNoticia'];
  					$datosAdj = $conexPDO->executeSelect(); 			
  			 	if (empty($datosAdj)) {
-	 				array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
+	 				array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => substr($rows['cuerpoN'],0,-70)."...",
  				           "adjunto" => false));	 				
  				} else {
- 				  	array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
+ 				  	array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => substr($rows['cuerpoN'],0,-70)."...",
  				           "adjunto" => true));	 				 			  	 			  	
  				   }	 				
  			
@@ -37,12 +37,12 @@
  					$conexPDO->Sqlquery = "SELECT * FROM adjuntosN WHERE idNoticia = ".$rows['idNoticia'];
  					$datosAdj = $conexPDO->executeSelect(); 			
  			 	if (empty($datosAdj)) {
-	 				array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
+	 				array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => substr($rows['cuerpoN'],0,-70)."...",
  				           "adjunto" => false));	 				
  				} else {
- 				  	array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
+ 				  	array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => $rows['tituloN'], "fecha" => $rows['fechaN'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => substr($rows['cuerpoN'],0,-70)."...",
  				           "adjunto" => true));	 				
  				   } 	
  			 			  			
