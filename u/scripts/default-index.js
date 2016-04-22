@@ -38,6 +38,8 @@ function dumpData(){//FUNCIONES DUMP DATA
             if (path[0] === ""){
                 master("home", 1);
                 //estado.slideUp(500);
+            } else {
+                location.href = "index.php";
             }
             break;
         case 2:
@@ -58,11 +60,19 @@ function dumpData(){//FUNCIONES DUMP DATA
                     case "nosotros":
                         master("acerca de", 1);
                         break;
+                    default :
+                        location.href = "index.php";
+                        break;
                 }
+            } else if (path[1] === "noticia"){
+                //alert("quiero noticia" + path[2]);
+                noticiaunica($.trim(path[2]));
+            } else {
+                location.href = "index.php";
             }
             break;
         default:
-
+            location.href = "index.php";
             break;
     }
 }//FUNCIONES DUMP DATA
@@ -86,7 +96,17 @@ function dumpData(){//FUNCIONES DUMP DATA
         window.history.pushState({"pageTitle":"Magna | Acerca de"}, "Magna | Home", "index.php?/section/nosotros");
         document.title = "Magna | Acerca de";
         dumpData();
-    });//ACCIONES NAVBAR
+    });
+    $(document).on("click", "article div h1", function(){
+        //alert($(this).attr('id'));
+        window.history.pushState({"pageTitle":"Magna | Nota"}, "Magna | Nota", "index.php?/noticia/" + $.trim($(this).attr('id')));
+        document.title = "Magna | Nota";
+        dumpData();
+    });
+$(document).on("click", "article div a", function(){
+    //alert($(this).attr('id'));
+    alert("quiero descargar");
+});//ACCIONES NAVBAR Y NOTICIA
 
 function SCinit(frames){//SOUNDCLOUD
     SC.initialize({
@@ -95,7 +115,11 @@ function SCinit(frames){//SOUNDCLOUD
 
     SC.get('/users/219630919/tracks', null, function(tracks) {//Obtiene pistas de magna radio
         var count = 0;
-        noticias.append("<h2 class='aviso'>Últimos podcasts</h2>");
+        noticias.append("<div class='col-xs-12 container'>" +
+            "<div class='row'>" +
+            "<h2 class='aviso'>Últimos podcasts</h2>" +
+            "</div>" +
+            "</div>");
         $(tracks).each(function(index, track) {
             if (count === frames){return;}//Solo descarga los ultimos 10 audios
             ++count;
@@ -335,8 +359,6 @@ function borraToken(){
 
 /*FUNCION DE DESCARGA DE DATOS*/
 function master(action, page){
-
-
     url = "../rest/rest.php/noticias";
     data = {
         seccion:action,
@@ -349,20 +371,72 @@ function master(action, page){
         data: data,
         success: function(data, status, jqXHR){
             estado.slideUp(500);
-            if (action === "home"){
-                SCinit(1);
-            }
             //alert(JSON.stringify(data) + " " + status);
-            $(data.data.cultura).each(function(data, seccion){
-                alert(JSON.stringify(seccion) + " CULTURA");
-            });
-            $(data.data.acercaDe).each(function(data, seccion){
-                alert(JSON.stringify(seccion)  + " ACERCADE");
-            });
+            if (data.data.cultura != undefined){//PONE HEADER DE NOTICIAS Y DESCARGA
+                noticias.append("<div class='col-xs-12 container'>" +
+                    "<div class='row'>" +
+                    "<h2 class='aviso'>Cultura</h2>" +
+                    "</div>" +
+                    "</div>");
+
+                $(data.data.cultura).each(function(data, seccion){
+                    //alert(JSON.stringify(seccion) + " CULTURA");
+                    var final = "";
+                    if (seccion.adjunto == false){
+                        final = '</article>';
+                    } else {
+                        final = '<div class="row"> <i data-toggle="tooltip" title="Hay adjuntos en este artículo" class="col-xs-12 fa fa-clipboard"></i> </div> </article>';
+                    }
+                    noticias.append('<article class="col-xs-12 container"> ' +
+                        '<div class="row"> <em class="col-sm-6">' + seccion.autor + '</em> ' +
+                        '<small class="col-sm-6"><i class="fa fa-clock-o">&nbsp;</i>' + seccion.fecha + '</small> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<h1 id="' + seccion.id + '" class="col-xs-12 tituNoti">' + seccion.titulo + '</h1> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<p class="col-xs-12 text-justify">  ' +
+                        seccion.cuerpo +
+                        '</p> ' +
+                        '</div>' + final);
+                });
+            }
+            if (data.data.acercaDe != undefined){
+                noticias.append("<div class='col-xs-12 container'>" +
+                    "<div class='row'>" +
+                    "<h2 class='aviso'>Nosotros</h2>" +
+                    "</div>" +
+                    "</div>");
+                $(data.data.acercaDe).each(function(data, seccion){
+                    //alert(JSON.stringify(seccion)  + " ACERCADE");
+                    var final = "";
+                    if (seccion.adjunto == false){
+                        final = '</article>';
+                    } else {
+                        final = '<div class="row"> <i data-toggle="tooltip" title="Hay adjuntos en este artículo" class="col-xs-12 fa fa-clipboard"></i> </div> </article>';
+                    }
+                    noticias.append('<article class="col-xs-12 container"> ' +
+                        '<div class="row"> <em class="col-sm-6">' + seccion.autor + '</em> ' +
+                        '<small class="col-sm-6"><i class="fa fa-clock-o">&nbsp;</i>' + seccion.fecha + '</small> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<h1 id="' + seccion.id + '" class="col-xs-12 tituNoti">' + seccion.titulo + '</h1> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<p class="col-xs-12 text-justify">  ' +
+                        seccion.cuerpo +
+                        '</p> ' +
+                        '</div>' + final);
+                });
+            }
+            if (action === "home"){
+                SCinit(2);
+            }
         },
         error: function(jqXHR, status, error){
             var data = $.parseJSON(jqXHR.responseText);
-            alert(JSON.stringify(data) + ": " + error);
+            //alert(JSON.stringify(data) + ": " + error);
+            console.log("Ha habido un error en el dump de noticias.");
             //Your code on error here
         },
         //Validation for different status codes
@@ -375,6 +449,79 @@ function master(action, page){
 }
 /*FUNCION DE DESCARGA DE DATOS*/
 
+/*FUNCION PARA ACCEDER A NOTICIA UNICA*/
+function noticiaunica(id){
+    var url = "../rest/rest.php/noticiaunica";
+    var datos = {id:id};
+    $.ajax({
+        async:false,
+        type:'GET',
+        url:url,
+        data: datos,
+        success: function(data, status, jqXHR){
+            var adj = '';
+            var img = '';
+            estado.slideUp(500);
+            if (data.status_message == "OK"){
+                //alert(data.data.adjuntos);
+                if(data.data.adjuntos != "false"){
+                    adj = '<div class="row" id="adjuntos">';
+                    $(data.data.adjuntos).each(function(id, adjunto){
+                        adj = adj.concat('<a id="' + adjunto.id + '"><i class="fa fa-clipboard">&nbsp;</i>' + adjunto.nombre + '</a>&nbsp;');
+                    });
+                    adj = adj.concat('</div>');
+                }
+                if (data.data.imagen != false){
+                    img = '<div class="row"><img class="col-xs-12" src="data:image/jpg;base64, ' + encodeURI(data.data.imagen) + '" alt="Imagen noticia"> </div>';
+                }
+
+                noticias.append('<article class="col-xs-12 container"> ' +
+                    '<div class="row"> ' +
+                    '<em class="col-sm-6">' + data.data.autor + '</em> ' +
+                    '<small class="col-sm-6"><i class="fa fa-clock-o">&nbsp;</i>' + data.data.fecha + '</small> ' +
+                    '</div> ' +
+                    '<div class="row"> ' +
+                    '<h1 class="col-xs-12 tituNoti">' + data.data.titulo + '</h1> ' +
+                    '</div> ' +
+                        img +
+                    '<div class="row"> ' +
+                    '<p class="col-xs-12 text-justify">' + data.data.cuerpo + '</p> ' +
+                    '</div> ' +
+                        adj +
+                    '</article>');
+            }
+        },
+        error: function(jqXHR, status, error){
+            //alert(JSON.stringify(data));
+            estado.slideUp(500);
+            try{
+                var data = $.parseJSON(jqXHR.responseText);
+                if (data.data[0] == "Noticia No Existe"){
+                    noticias.append("<div class='col-xs-12 container'>" +
+                        "<div class='row'>" +
+                        "<h2 class='aviso'>Artículo no existe</h2>" +
+                        "</div>" +
+                        "</div>");
+                } else {
+                    noticias.append("<div class='col-xs-12 container'>" +
+                        "<div class='row'>" +
+                        "<h2 class='aviso'>Error al desplegar artículo</h2>" +
+                        "</div>" +
+                        "</div>");
+                }
+            } catch (e){
+                location.href = "index.php";
+            }
+            console.log("Fallo al descargar noticia");
+        },
+        statusCode: {
+            400: function(){
+
+            }
+        }
+    });
+}
+/*FUNCION PARA ACCEDER A NOTICIA UNICA*/
 
 //AL HACER CLICK EN HEADER
 $("header h1").click(function(){

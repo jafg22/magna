@@ -44,6 +44,7 @@ article div i{/*INDICA SI HAY ADJUNTOS*/
 }
 
 article div a{/*INDICA SI HAY ADJUNTOS*/
+    cursor: pointer;
     padding-bottom: 5pt;
     padding-left: 5pt;
     padding-right: 5pt;
