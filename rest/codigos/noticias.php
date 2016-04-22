@@ -11,21 +11,16 @@
  			$pilaCultura = array();
  			$pila_Adj_cultura=array();
 
- 			foreach ($datos as $rows){
- 				if (is_null($rows['image'])) {
- 					$rows['image'] = false;
- 				}else{
- 					$rows['image'] = true;
- 				} 				 				
- 					$conexPDO->Sqlquery = "SELECT * FROM adjuntosn WHERE idNoticia = ".$rows['idNoticia'];
+ 			foreach ($datos as $rows){ 								 				
+ 					$conexPDO->Sqlquery = "SELECT * FROM adjuntosN WHERE idNoticia = ".$rows['idNoticia'];
  					$datosAdj = $conexPDO->executeSelect(); 			
  			 	if (empty($datosAdj)) {
 	 				array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...","image" => $rows['image'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
  				           "adjunto" => false));	 				
  				} else {
  				  	array_push($pilaCultura,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...","image" => $rows['image'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
  				           "adjunto" => true));	 				 			  	 			  	
  				   }	 				
  			
@@ -38,21 +33,16 @@
  			$pilaAcercade = array();
 
  			foreach ($datos as $rows){
-
- 				if (is_null($rows['image'])) {
- 					$rows['image'] = false;
- 				}else{
- 					$rows['image'] = true;
- 				} 				 				
- 					$conexPDO->Sqlquery = "SELECT * FROM adjuntosn WHERE idNoticia = ".$rows['idNoticia'];
+ 								 				
+ 					$conexPDO->Sqlquery = "SELECT * FROM adjuntosN WHERE idNoticia = ".$rows['idNoticia'];
  					$datosAdj = $conexPDO->executeSelect(); 			
  			 	if (empty($datosAdj)) {
 	 				array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...","image" => $rows['image'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
  				           "adjunto" => false));	 				
  				} else {
  				  	array_push($pilaAcercade,array("id" => $rows['idNoticia'], "titulo" => utf8_encode($rows['tituloN']), "fecha" => $rows['fechaN'],
- 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...","image" => $rows['image'],
+ 				           "autor" => $rows['usuarioN'], "cuerpo" => utf8_encode(substr($rows['cuerpoN'],0,-70))."...",
  				           "adjunto" => true));	 				
  				   } 	
  			 			  			
@@ -81,20 +71,16 @@
 
 
  			foreach ($datos as $rows){
- 				if (is_null($rows['image'])) { 					
- 					$rows['image'] = false;
- 				}else {
- 					$rows['image'] = base64_encode($rows['image']);
- 				} 											
+ 															
 				array_push($pila_acercade,array("id" => $rows['idNoticia'],"titulo"=>utf8_encode($rows['tituloN']),
 							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode(substr($rows['cuerpoN'],0,-70)."..."),
-							"imagen"=>$rows['image'],"adjunto" => array()));								
+							"adjunto" => array()));								
  			}
  			 			
  			$i=0; 			 			
  			foreach ($pila_acercade as $pila) { 				
  				
- 				$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosn WHERE idNoticia = ".$pila['id'];
+ 				$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosN WHERE idNoticia = ".$pila['id'];
 				$datos2 = $conexPDO->ExecuteSelect();
 
 				if (empty($datos2)) {
@@ -130,20 +116,16 @@
  			$pila_cultura = array();
 
  			foreach ($datos as $rows){
- 				if (is_null($rows['image'])) { 					
- 					$rows['image'] = false;
- 				}else {
- 					$rows['image'] = base64_encode($rows['image']);
- 				} 											
+ 															
 				array_push($pila_cultura,array("id" => $rows['idNoticia'],"titulo"=>utf8_encode($rows['tituloN']),
 							"fecha" => $rows['fechaN'] ,"autor"=>$rows['usuarioN'],"cuerpo"=>utf8_encode(substr($rows['cuerpoN'],0,-70)."..."),
-							"imagen"=>$rows['image'],"adjunto" => array()));								
+							"adjunto" => array()));								
  			}
  			 			
  			$i=0; 			 			
  			foreach ($pila_cultura as $pila) { 				
  				
- 				$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosn WHERE idNoticia = ".$pila['id'];
+ 				$conexPDO->Sqlquery = "SELECT idNoticia,nomA,mime from adjuntosN WHERE idNoticia = ".$pila['id'];
 				$datos2 = $conexPDO->ExecuteSelect();
 
 				if (empty($datos2)) {
