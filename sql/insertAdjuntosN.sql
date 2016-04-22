@@ -17,7 +17,7 @@ INSERT INTO `magna`.`adjuntosN`  VALUES ('PNG', '11', FFD8FFE000104A464946000101
   
 DROP PROCEDURE IF EXISTS sp_desBan;
 CREATE PROCEDURE sp_desBan(
-usua  varchar(15)
+in usua  varchar(15)
 
 )
 BEGIN
@@ -25,7 +25,7 @@ SELECT DATE(now()) INTO @fec1;
 SELECT MAX(fechaCaduca) INTO @fec2 from baneos where usuBaneo = usua;  
 
 IF @fec1 > @fec2 THEN
-UPDATE usuarios SET estadoU = '1' WHERE usuario = 'eorias';
+UPDATE usuarios SET estadoU = '1' WHERE usuario = usua;
 END IF;
 
 END;

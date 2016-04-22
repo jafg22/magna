@@ -267,7 +267,7 @@ function ws(open){
                         '<div class="timeline"></div> ' +
                         '<span class="pcast-currenttime pcast-time"></span> ' +
                         '</section> ' +
-                        '<audio onended="buscaStr(true);" id="main-audio" preload="metadata" width="100%" src="http://127.0.0.1:8000/magna"> ' +
+                        '<audio onended="buscaStr(true);" id="main-audio" preload="metadata" width="100%" src="http://10.40.60.254:8000/magna"> ' +
                         '</audio> </div> </div>');
                         console.log("Radio encendida, inicializando...");
             } else {
