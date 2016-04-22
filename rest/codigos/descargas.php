@@ -5,7 +5,7 @@
 
 	header("Content-Type:text/html");
 
-	$conexPDO->Sqlquery = "select nomA,archivo,mime FROM adjuntosn where idNoticia =".$_GET['id'];
+	$conexPDO->Sqlquery = "select nomA,archivo,mime FROM adjuntosn where idNoticia =".$_GET['id']." and nomA = '".$_GET['nom']."'";
 	$datos = $conexPDO->executeSelect();
 
 	foreach ($datos as $row) {
