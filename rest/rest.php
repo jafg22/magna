@@ -30,6 +30,8 @@
                 		include_once("codigos/noticias.php");
                 	}else if ($request[0] == 'noticiaunica') {                		
                 		include_once("codigos/noticiaUnica.php");
+                	}else if ($request[0] == 'getfile') {                		
+                		include_once("codigos/descargas.php");
                 	}
 				}					
 				break;
