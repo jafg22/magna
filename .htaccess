@@ -1,0 +1,20 @@
+#Evitar que naveguen en los directorios
+#Options All -Indexes
+
+#evitar que accedan a ciertos archivos 
+#<FilesMatch "(\.(inc|ini|sh|sql|swp)|~)$">
+ #Order allow,deny
+ #Deny from all
+ #Satisfy All
+#</FilesMatch>
+
+#Denegar acceder a una IP
+#deny from all
+#allow from 10.40.60.105
+#allow from 10.40.60.215
+
+#Deniega a todos el acesso
+#deny from all
+
+#Texto de muestra
+ErrorDocument 403 /pagina.php
