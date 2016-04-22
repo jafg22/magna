@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <?php
                             if ($sesion){
-                                echo "<li><a id='user'><i class='fa fa-user'>&nbsp;</i>".explode(" ", $_SESSION['NomC'])[0]."</a></li>";
+                                echo "<li><i class='fa fa-user'>&nbsp;</i><a id='user'>".explode(" ", $_SESSION['user'])[0]."</a></li>";
                                 echo "<li role='separator' class='divider'></li>";
                                 echo "<li><a id='drlogout'><i class='fa fa-sign-out'>&nbsp;</i>Cerrar sesión</a></li>";
                             } else {

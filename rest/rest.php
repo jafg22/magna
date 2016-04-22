@@ -32,7 +32,7 @@
                 		include_once("codigos/noticiaUnica.php");
                 	}else if ($request[0] == 'getfile') {                		
                 		include_once("codigos/descargas.php");
-                	}else if ($request[0] == 'inicidencia') {                		
+                	}else if ($request[0] == 'incidencia') {
                 		include_once("codigos/incidencia.php");
                 	}
 				}					

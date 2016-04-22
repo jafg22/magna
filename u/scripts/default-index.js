@@ -1,7 +1,7 @@
 //GLOBALES
-var wsUri = "ws://localhost:845/magna/u/code/wsserver/server.php";
-var icecastSrv = "http://127.0.0.1:8000/";
-var colores = ['royalblue', 'indianred', 'yellow', 'pink', 'orange', 'lightgray'];
+var wsUri = "ws://10.40.60.254:845/magna/u/code/wsserver/server.php";
+var icecastSrv = "http://10.40.60.254:8000/";
+var colores = ['royalblue', 'indianred', 'pink', 'orange', 'lightgray'];
 
 //DOM
 var chat = $("#chatF");
@@ -214,7 +214,17 @@ function ws(open){
                 color : color //Por el momento
             };
             //convert and send data to server
+            if (mymessage.includes(' caca ') || mymessage.includes(' caca') || mymessage.includes('caca ')){
+                //alert('enviando xhr')
+                $.get("../rest/rest.php/incidencia", {usuario:user}, function(data){
+                    if (data.data.baneado){
+                        alert('Usted acaba de ser baneado debido a\ndebido a vocabulario soez.');
+                        borraToken(true);
+                    }
+                })
+            }
             websocket.send(JSON.stringify(msg));
+            $('#message').val(''); //reset text
         }
     });
 
@@ -237,7 +247,6 @@ function ws(open){
         }
 
         $("#message_box").animate({ scrollTop: $('#message_box').prop("scrollHeight")}, 200);
-        $('#message').val(''); //reset text
     };
 
     websocket.onerror	= function(ev){$('#message_box').append("<div class='system_error'>Ha ocurrido un error.</div>");};
@@ -345,6 +354,7 @@ function borraToken(logout){
         var url = "../rest/rest.php/bortoken";
         var data = {tok:token};
         data = JSON.stringify(data);
+        console.log("iniciando ajax");
         $.ajax({
             async:false,
             type:'POST',
@@ -354,11 +364,11 @@ function borraToken(logout){
             processData:false,
             data:data,
             success: function(data, status, jqXHR){
-                //alert(JSON.stringify(data) + ": " + status + "\n");
+                alert(JSON.stringify(data) + ": " + status + "\n");
                 //Your code on success here
             },
             error: function(jqXHR, status, error){
-                //alert(status + ": " + error);
+                alert(status + ": " + error);
                 //Your code on error here
             },
             //Validation for different status codes
@@ -368,9 +378,10 @@ function borraToken(logout){
                 }
             }
         });
-        if (logout){
-            location.href = "code/php/exit.php"
-        }
+    }
+    if (logout){
+        console.log("saliendo");
+        location.href = "code/php/exit.php"
     }
 }
 //BORRA TOKEN

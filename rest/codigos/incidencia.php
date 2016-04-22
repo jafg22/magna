@@ -15,14 +15,3 @@
 				deliver_response(200, "OK", array("baneado" => false));
 			}
 		}
-
-
-
-		
-
-
-
-
-
-
-?>
