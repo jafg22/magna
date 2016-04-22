@@ -95,7 +95,11 @@ function SCinit(frames){//SOUNDCLOUD
 
     SC.get('/users/219630919/tracks', null, function(tracks) {//Obtiene pistas de magna radio
         var count = 0;
-        noticias.append("<h2 class='aviso'>Últimos podcasts</h2>");
+        noticias.append("<div class='col-xs-12 container'>" +
+            "<div class='row'>" +
+            "<h2 class='aviso'>Últimos podcasts</h2>" +
+            "</div>" +
+            "</div>");
         $(tracks).each(function(index, track) {
             if (count === frames){return;}//Solo descarga los ultimos 10 audios
             ++count;
@@ -335,8 +339,6 @@ function borraToken(){
 
 /*FUNCION DE DESCARGA DE DATOS*/
 function master(action, page){
-
-
     url = "../rest/rest.php/noticias";
     data = {
         seccion:action,
@@ -349,16 +351,67 @@ function master(action, page){
         data: data,
         success: function(data, status, jqXHR){
             estado.slideUp(500);
-            if (action === "home"){
-                SCinit(1);
-            }
             //alert(JSON.stringify(data) + " " + status);
-            $(data.data.cultura).each(function(data, seccion){
-                alert(JSON.stringify(seccion) + " CULTURA");
-            });
-            $(data.data.acercaDe).each(function(data, seccion){
-                alert(JSON.stringify(seccion)  + " ACERCADE");
-            });
+            if (data.data.cultura != undefined){//PONE HEADER DE NOTICIAS Y DESCARGA
+                noticias.append("<div class='col-xs-12 container'>" +
+                    "<div class='row'>" +
+                    "<h2 class='aviso'>Cultura</h2>" +
+                    "</div>" +
+                    "</div>");
+
+                $(data.data.cultura).each(function(data, seccion){
+                    //alert(JSON.stringify(seccion) + " CULTURA");
+                    var final = "";
+                    if (seccion.adjunto == false){
+                        final = '</article>';
+                    } else {
+                        final = '<div class="row"> <i data-toggle="tooltip" title="Hay adjuntos en este artículo" class="col-xs-12 fa fa-clipboard"></i> </div> </article>';
+                    }
+                    noticias.append('<article id="' + seccion.id + '" class="col-xs-12 container"> ' +
+                        '<div class="row"> <em class="col-sm-6">' + seccion.autor + '</em> ' +
+                        '<small class="col-sm-6"><i class="fa fa-clock-o">&nbsp;</i>' + seccion.fecha + '</small> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<h1 class="col-xs-12 tituNoti">' + seccion.titulo + '</h1> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<p class="col-xs-12 text-justify">  ' +
+                        seccion.cuerpo +
+                        '</p> ' +
+                        '</div>' + final);
+                });
+            }
+            if (data.data.acercaDe != undefined){
+                noticias.append("<div class='col-xs-12 container'>" +
+                    "<div class='row'>" +
+                    "<h2 class='aviso'>Nosotros</h2>" +
+                    "</div>" +
+                    "</div>");
+                $(data.data.acercaDe).each(function(data, seccion){
+                    //alert(JSON.stringify(seccion)  + " ACERCADE");
+                    var final = "";
+                    if (seccion.adjunto == false){
+                        final = '</article>';
+                    } else {
+                        final = '<div class="row"> <i data-toggle="tooltip" title="Hay adjuntos en este artículo" class="col-xs-12 fa fa-clipboard"></i> </div> </article>';
+                    }
+                    noticias.append('<article id="' + seccion.id + '" class="col-xs-12 container"> ' +
+                        '<div class="row"> <em class="col-sm-6">' + seccion.autor + '</em> ' +
+                        '<small class="col-sm-6"><i class="fa fa-clock-o">&nbsp;</i>' + seccion.fecha + '</small> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<h1 class="col-xs-12 tituNoti">' + seccion.titulo + '</h1> ' +
+                        '</div> ' +
+                        '<div class="row"> ' +
+                        '<p class="col-xs-12 text-justify">  ' +
+                        seccion.cuerpo +
+                        '</p> ' +
+                        '</div>' + final);
+                });
+            }
+            if (action === "home"){
+                SCinit(2);
+            }
         },
         error: function(jqXHR, status, error){
             var data = $.parseJSON(jqXHR.responseText);

@@ -55,7 +55,7 @@ html, main{
 }
 
 .aviso{/*TITULOS SOUNDCLOUD*/
-    margin-bottom: 8pt;
+    /*margin-bottom: 8pt;*/
     padding-top: 6pt;
     padding-bottom: 6pt;
 
@@ -64,6 +64,8 @@ html, main{
     background: linear-gradient(to right, royalblue 2%, orangered 4%, #fafafa 7%);;
     box-shadow: 2px 3px 2px 1px lightgray;
     border-radius: 8px;
+
+    z-index: 1;
 }
 /*INDEX*/
 
