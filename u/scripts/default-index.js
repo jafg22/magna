@@ -104,8 +104,7 @@ function dumpData(){//FUNCIONES DUMP DATA
         dumpData();
     });
 $(document).on("click", "article div a", function(){
-    //alert($(this).attr('id'));
-    alert("quiero descargar");
+    descarga($(this).attr('id'), $(this).html());
 });//ACCIONES NAVBAR Y NOTICIA
 
 function SCinit(frames){//SOUNDCLOUD
@@ -134,7 +133,7 @@ function SCinit(frames){//SOUNDCLOUD
                     noticias.append("<hr><tr><hr>");
                 },
                 error: function(jqXHR, status, error){
-                    alert(status + ": " + error);
+                    //alert(status + ": " + error);
                     //Your code on error here
                 },
                 //Validation for different status codes
@@ -298,7 +297,7 @@ $("#restoreSession").ready(function(){ //Elemento html que es insertado en cuerp
                 },
                 error: function(jqXHR, status, error){
                     var data = $.parseJSON(jqXHR.responseText);
-                    alert(data.data[0]);
+                    //alert(data.data[0]);
                     if (data.data[0] == "Token vencido"){
                         console.log("Sesion expirada");
                         borraToken();
@@ -467,7 +466,7 @@ function noticiaunica(id){
                 if(data.data.adjuntos != "false"){
                     adj = '<div class="row" id="adjuntos">';
                     $(data.data.adjuntos).each(function(id, adjunto){
-                        adj = adj.concat('<a id="' + adjunto.id + '"><i class="fa fa-clipboard">&nbsp;</i>' + adjunto.nombre + '</a>&nbsp;');
+                        adj = adj.concat('<i class="fa fa-clipboard">&nbsp;</i><a id="' + adjunto.id + '">' + adjunto.nombre + '</a>&nbsp;');
                     });
                     adj = adj.concat('</div>');
                 }
@@ -522,6 +521,44 @@ function noticiaunica(id){
     });
 }
 /*FUNCION PARA ACCEDER A NOTICIA UNICA*/
+
+/*FUNCION PARA DESCARGAR ADJUNTO*/
+function descarga(id, nom){
+    var url = "../rest/rest.php/getfile";
+    var datos = {id:id,
+                nom:nom};
+    $.ajax({
+        async:false,
+        type:'GET',
+        url:url,
+        data: datos,
+        success: function(data, status, jqXHR){
+            //alert(JSON.stringify(data));
+            data = JSON.parse(data);
+            var obj = document.createElement('a'); //Crea elemento a
+            obj.href = 'data:'+ data.mime +';base64,' + encodeURI(data.blob); //Agregada meta href
+            obj.target = '_blank'; //Objetivo -> nueva pestaña
+            obj.download = data.nombre; //Nombre para descarga
+            document.body.appendChild(obj); //Agrega a DOM
+            obj.click(); //Genera click
+        },
+        error: function(jqXHR, status, error){
+            var data = $.parseJSON(jqXHR.responseText);
+            //alert(data.data[0]);
+            if (data.data[0] == "Token vencido"){
+                console.log("Sesion expirada");
+                borraToken();
+                init();
+            }
+        },
+        statusCode: {
+            400: function(){
+
+            }
+        }
+    });
+}
+/*FUNCION PARA DESCARGAR ADJUNTO*/
 
 //AL HACER CLICK EN HEADER
 $("header h1").click(function(){
