@@ -13,7 +13,7 @@
 
 -**Acceso a programas pasados y ofrecerlos en diferido dentro del sitio web.**
 
--**Uso de tecnologías _RESTful_ en comunicación y _Web Responsive_ para la interfaz.**
+-**Uso de tecnologías _RESTfull_ en comunicación y _Web Responsive_ para la interfaz.**
 
 -**Implementación de un chat brindado a los radioescuchas.**
 
